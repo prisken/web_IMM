@@ -1,0 +1,195 @@
+{
+  "navigation": {
+    "home": "Home",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "about": "About",
+    "aiGenerator": "AI Generator",
+    "contact": "Contact",
+    "getStarted": "Get Started"
+  },
+  "hero": {
+    "title": "Creative Media Production House",
+    "location": "Hong Kong",
+    "description": "Professional media production services in Hong Kong. We create compelling TV commercials, KOL videos, and creative content that builds brands and engages audiences.",
+    "cta": "Start Your Project",
+    "learnMore": "Learn More"
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Comprehensive media production solutions",
+    "tvc": {
+      "title": "TV Commercials",
+      "description": "High-impact television commercials that boost brand awareness and drive sales",
+      "features": [
+        "Creative Concept Development",
+        "Professional Filming & Editing",
+        "Broadcast-Ready Deliverables"
+      ]
+    },
+    "kol": {
+      "title": "KOL Videos",
+      "description": "Authentic influencer content that connects with your target audience",
+      "features": [
+        "KOL Selection & Matching",
+        "Content Strategy Planning",
+        "Multi-Platform Distribution"
+      ]
+    },
+    "digital": {
+      "title": "Digital Content",
+      "description": "Innovative digital content solutions that enhance your brand's online presence",
+      "features": [
+        "Social Media Content",
+        "Brand Video Production",
+        "Interactive Content"
+      ]
+    },
+    "creative": {
+      "title": "Creative Services",
+      "description": "Unique creative concepts and brand storytelling",
+      "features": [
+        "Brand strategy development",
+        "Creative concept design",
+        "Storyboard creation"
+      ]
+    }
+  },
+  "ai": {
+    "title": "AI Storyboard Generator",
+    "subtitle": "Revolutionary Creative Tool",
+    "description": "Generate professional storyboards and creative concepts in minutes using advanced AI technology.",
+    "features": {
+      "smart": "Smart Analysis",
+      "smartDesc": "AI-driven creative analysis that understands your brand and target audience",
+      "visual": "Visual Generation",
+      "visualDesc": "Generate high-quality visual concepts and storyboards instantly",
+      "instant": "Instant Results",
+      "instantDesc": "Get complete creative solutions in minutes"
+    },
+    "cta": "Start Generating"
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "subtitle": "Our Creative Work",
+    "description": "Explore our amazing work for various brands and industries.",
+    "filterAll": "All",
+    "filterTVC": "TV Commercials",
+    "filterKOL": "KOL Content",
+    "filterDigital": "Digital Content",
+    "projects": [
+      {
+        "title": "TV Commercial Project",
+        "description": "Television commercials produced for well-known brands",
+        "tags": ["TV Commercials", "Brand Promotion"]
+      },
+      {
+        "title": "KOL Collaboration Project",
+        "description": "Video content created in collaboration with influencers",
+        "tags": ["KOL", "Social Media"]
+      },
+      {
+        "title": "Digital Content Project",
+        "description": "Innovative digital marketing content",
+        "tags": ["Digital Marketing", "Content Creation"]
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "Client Testimonials",
+    "subtitle": "Don't just take our word for it - hear from the brands we've helped succeed",
+    "items": [
+      {
+        "name": "Sarah Chen",
+        "position": "Marketing Director, Hong Kong Tech Company",
+        "quote": "IMM Media transformed our brand with their creative vision. The AI storyboard generator saved us weeks of planning time."
+      },
+      {
+        "name": "Michael Wong",
+        "position": "CEO, Startup XYZ",
+        "quote": "The team's expertise in KOL content creation helped us effectively reach our target audience. Outstanding results!"
+      },
+      {
+        "name": "Lisa Zhang",
+        "position": "Brand Manager, Fashion Forward",
+        "quote": "Professional, creative, and results-driven. IMM Media exceeded our expectations on every project."
+      }
+    ]
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "Where Creativity Meets Technology",
+    "description": "We are Hong Kong's leading media production company, focused on creating compelling content that helps brands connect deeply with their audiences.",
+    "mission": "Our Mission",
+    "missionText": "To help businesses stand out in the digital age through innovative media solutions.",
+    "vision": "Our Vision",
+    "visionText": "To become Asia's most innovative media production company.",
+    "values": "Our Values",
+    "valuesList": [
+      "Creative Excellence",
+      "Technical Innovation",
+      "Client Satisfaction",
+      "Continuous Improvement"
+    ],
+    "stats": [
+      { "value": "10+", "label": "Years Experience" },
+      { "value": "100+", "label": "Projects Completed" },
+      { "value": "50+", "label": "Happy Clients" }
+    ]
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Start Your Creative Project",
+    "description": "Ready to start your next creative project? We look forward to working with you.",
+    "cta": {
+      "title": "Ready to Get Started?",
+      "description": "Let's discuss your project and create something amazing together",
+      "button": "Contact Us"
+    },
+    "form": {
+      "submit": "Send Message"
+    }
+  },
+  "footer": {
+    "company": {
+      "name": "IMM Media"
+    },
+    "description": "Hong Kong's leading creative media production company, specializing in TV commercials, KOL content, and digital media solutions.",
+    "links": {
+      "services": "TV Commercials",
+      "kolContent": "KOL Content",
+      "creativeSolutions": "Creative Solutions",
+      "aiGenerator": "AI Storyboard Generator",
+      "brandVideos": "Brand Videos",
+      "company": "Company",
+      "careers": "Careers",
+      "blog": "Blog"
+    },
+    "newsletter": {
+      "title": "Subscribe to Our Newsletter",
+      "description": "Get the latest creative inspiration and industry insights.",
+      "placeholder": "Enter your email",
+      "subscribe": "Subscribe"
+    },
+    "copyright": "© {year} IMM Media. All rights reserved.",
+    "legal": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "cookies": "Cookie Policy"
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "close": "Close",
+    "next": "Next",
+    "previous": "Previous",
+    "back": "Back"
+  }
+} 

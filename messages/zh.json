@@ -1,0 +1,195 @@
+{
+  "navigation": {
+    "home": "首頁",
+    "services": "服務",
+    "portfolio": "作品集",
+    "about": "關於我們",
+    "aiGenerator": "AI生成器",
+    "contact": "聯絡我們",
+    "getStarted": "立即開始"
+  },
+  "hero": {
+    "title": "創意媒體製作公司",
+    "location": "香港",
+    "description": "香港專業媒體製作服務。我們製作引人入勝的電視廣告、KOL視頻和創意內容，建立品牌並吸引觀眾。",
+    "cta": "開始您的項目",
+    "learnMore": "了解更多"
+  },
+  "services": {
+    "title": "我們的服務",
+    "subtitle": "全面的媒體製作解決方案",
+    "tvc": {
+      "title": "電視廣告",
+      "description": "高影響力的電視廣告，提升品牌知名度並促進銷售",
+      "features": [
+        "創意概念開發",
+        "專業拍攝與剪輯",
+        "廣播級交付物"
+      ]
+    },
+    "kol": {
+      "title": "KOL視頻",
+      "description": "真實的網紅內容，與您的目標受眾建立聯繫",
+      "features": [
+        "KOL選擇與配對",
+        "內容策略規劃",
+        "多平台分發"
+      ]
+    },
+    "digital": {
+      "title": "數位內容",
+      "description": "創新的數位內容解決方案，提升品牌在線影響力",
+      "features": [
+        "社交媒體內容",
+        "品牌視頻製作",
+        "互動式內容"
+      ]
+    },
+    "creative": {
+      "title": "創意服務",
+      "description": "獨特的創意概念和品牌故事敘述",
+      "features": [
+        "品牌策略開發",
+        "創意概念設計",
+        "故事板製作"
+      ]
+    }
+  },
+  "ai": {
+    "title": "AI故事板生成器",
+    "subtitle": "革命性的創意工具",
+    "description": "使用先進的AI技術，在幾分鐘內生成專業的故事板和創意概念。",
+    "features": {
+      "smart": "智能分析",
+      "smartDesc": "AI驅動的創意分析，理解您的品牌和目標受眾",
+      "visual": "視覺生成",
+      "visualDesc": "即時生成高質量的視覺概念和故事板",
+      "instant": "即時結果",
+      "instantDesc": "幾分鐘內獲得完整的創意方案"
+    },
+    "cta": "開始生成"
+  },
+  "portfolio": {
+    "title": "作品集",
+    "subtitle": "我們的創意作品",
+    "description": "探索我們為各種品牌和行業創作的精彩作品。",
+    "filterAll": "全部",
+    "filterTVC": "電視廣告",
+    "filterKOL": "KOL內容",
+    "filterDigital": "數位內容",
+    "projects": [
+      {
+        "title": "電視廣告項目",
+        "description": "為知名品牌製作的電視廣告",
+        "tags": ["電視廣告", "品牌推廣"]
+      },
+      {
+        "title": "KOL合作項目",
+        "description": "與網紅合作的視頻內容",
+        "tags": ["KOL", "社交媒體"]
+      },
+      {
+        "title": "數位內容項目",
+        "description": "創新的數位營銷內容",
+        "tags": ["數位營銷", "內容創作"]
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "客戶評價",
+    "subtitle": "不要只聽我們說 - 聽聽我們幫助成功的品牌怎麼說",
+    "items": [
+      {
+        "name": "陳莎拉",
+        "position": "營銷總監, 香港科技公司",
+        "quote": "IMM Media用他們的創意願景改變了我們的品牌。AI分鏡生成器為我們節省了數週的規劃時間。"
+      },
+      {
+        "name": "黃邁克",
+        "position": "首席執行官, 初創企業XYZ",
+        "quote": "團隊在KOL內容創作方面的專業知識幫助我們有效地接觸到目標受眾。出色的結果！"
+      },
+      {
+        "name": "張麗莎",
+        "position": "品牌經理, 時尚前進",
+        "quote": "專業、創意且注重結果。IMM Media在每個項目上都超出了我們的期望。"
+      }
+    ]
+  },
+  "about": {
+    "title": "關於我們",
+    "subtitle": "創意與技術的完美結合",
+    "description": "我們是香港領先的媒體製作公司，專注於創建引人入勝的內容，幫助品牌與受眾建立深層連接。",
+    "mission": "我們的使命",
+    "missionText": "通過創新的媒體解決方案，幫助企業在數位時代脫穎而出。",
+    "vision": "我們的願景",
+    "visionText": "成為亞洲最具創新性的媒體製作公司。",
+    "values": "我們的價值觀",
+    "valuesList": [
+      "創意卓越",
+      "技術創新",
+      "客戶滿意",
+      "持續改進"
+    ],
+    "stats": [
+      { "value": "10+", "label": "年經驗" },
+      { "value": "100+", "label": "完成項目" },
+      { "value": "50+", "label": "滿意客戶" }
+    ]
+  },
+  "contact": {
+    "title": "聯絡我們",
+    "subtitle": "開始您的創意項目",
+    "description": "準備好開始您的下一個創意項目了嗎？我們期待與您合作。",
+    "cta": {
+      "title": "準備好開始了嗎？",
+      "description": "讓我們討論您的項目，一起創造令人驚嘆的作品",
+      "button": "聯絡我們"
+    },
+    "form": {
+      "submit": "發送訊息"
+    }
+  },
+  "footer": {
+    "company": {
+      "name": "IMM媒體"
+    },
+    "description": "香港領先的創意媒體製作公司，專注於電視廣告、KOL內容和數位媒體解決方案。",
+    "links": {
+      "services": "電視廣告",
+      "kolContent": "KOL內容",
+      "creativeSolutions": "創意解決方案",
+      "aiGenerator": "AI故事板生成器",
+      "brandVideos": "品牌視頻",
+      "company": "公司",
+      "careers": "職業機會",
+      "blog": "部落格"
+    },
+    "newsletter": {
+      "title": "訂閱我們的通訊",
+      "description": "獲取最新的創意靈感和行業洞察。",
+      "placeholder": "輸入您的電子郵件",
+      "subscribe": "訂閱"
+    },
+    "copyright": "© {year} IMM媒體。保留所有權利。",
+    "legal": {
+      "privacy": "隱私政策",
+      "terms": "使用條款",
+      "cookies": "Cookie政策"
+    }
+  },
+  "common": {
+    "loading": "載入中...",
+    "error": "錯誤",
+    "success": "成功",
+    "submit": "提交",
+    "cancel": "取消",
+    "save": "儲存",
+    "edit": "編輯",
+    "delete": "刪除",
+    "close": "關閉",
+    "next": "下一步",
+    "previous": "上一步",
+    "back": "返回"
+  }
+} 

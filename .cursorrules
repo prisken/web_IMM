@@ -1,0 +1,100 @@
+# Media Production House Website - Cursor Rules
+
+## Project Overview
+Building a professional website for a media production house focused on:
+- Showcasing creative capabilities and portfolio
+- Generating leads through compelling content
+- Brand building and audience engagement
+- Creative solutions for businesses and individuals
+- **AI-powered storyboard generator for interactive lead generation**
+
+## Core Objectives
+1. **Lead Generation**: Convert visitors into potential clients
+2. **Portfolio Showcase**: Display creative work and capabilities
+3. **Brand Building**: Establish strong brand identity and trust
+4. **Audience Engagement**: Capture and retain visitor attention
+5. **AI Innovation**: Demonstrate cutting-edge creative technology
+
+## Technical Requirements
+- Modern, responsive design
+- Fast loading times and SEO optimization
+- Mobile-first approach
+- Professional animations and interactions
+- Contact forms and lead capture mechanisms
+- **AI integration for storyboard generation**
+- **Interactive questionnaire system**
+- **Real-time content generation capabilities**
+
+## Design Principles
+- **Creative & Professional**: Balance creativity with business credibility
+- **Visual Impact**: Strong visual hierarchy and compelling imagery
+- **User Experience**: Intuitive navigation and clear call-to-actions
+- **Brand Consistency**: Cohesive visual identity throughout
+- **Interactive Engagement**: Seamless AI-powered user interactions
+
+## Key Features to Implement
+1. **Hero Section**: Compelling headline with clear value proposition
+2. **Portfolio Gallery**: Showcase of best work with case studies
+3. **Services Section**: Clear description of offerings
+4. **About Section**: Company story and team highlights
+5. **Testimonials**: Social proof from satisfied clients
+6. **Contact Forms**: Multiple lead capture points
+7. **Blog/Content Hub**: SEO and thought leadership
+8. **AI Storyboard Generator**: Interactive tool for creating custom storyboards
+   - Business TVC storyboard generator
+   - KOL blog video storyboard generator
+   - Dynamic questionnaire system
+   - Real-time visual generation
+   - Lead capture through AI interaction
+
+## AI System Requirements
+- **Questionnaire Engine**: Dynamic form system with conditional logic
+- **Content Generation**: AI-powered storyline and visual concept creation
+- **Visual Generation**: Integration with image generation APIs (DALL-E, Midjourney, etc.)
+- **User Experience**: Smooth, engaging interaction flow
+- **Lead Capture**: Seamless collection of user information during AI interaction
+- **Export Functionality**: Downloadable storyboards and concepts
+- **Follow-up System**: Automated lead nurturing based on generated content
+
+## Content Strategy
+- Focus on benefits over features
+- Use storytelling to connect with audience
+- Include clear calls-to-action throughout
+- Optimize for search engines
+- Create compelling case studies
+- **Highlight AI innovation and creative technology**
+
+## Development Guidelines
+- Use modern web technologies (React/Next.js preferred)
+- Implement responsive design patterns
+- Optimize for performance and accessibility
+- Include analytics and tracking
+- Ensure cross-browser compatibility
+- **Integrate AI APIs and services**
+- **Implement real-time content generation**
+- **Build scalable questionnaire system**
+
+## Brand Messaging
+- Emphasize creativity and innovation
+- Highlight problem-solving capabilities
+- Focus on results and ROI for clients
+- Build trust through expertise and experience
+- **Showcase AI-powered creative solutions**
+- **Position as technology-forward creative agency**
+
+## Success Metrics
+- Lead form submissions
+- Portfolio engagement rates
+- Contact page visits
+- Social media integration
+- Search engine rankings
+- **AI tool usage and engagement**
+- **Storyboard generation completion rates**
+- **Lead quality from AI interactions**
+
+## AI Integration Architecture
+- **Frontend**: React/Next.js with interactive components
+- **Backend**: Node.js/API routes for AI processing
+- **AI Services**: OpenAI API, image generation APIs
+- **Database**: User data and generated content storage
+- **Analytics**: Track AI tool usage and conversion rates 
