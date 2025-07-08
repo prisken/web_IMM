@@ -1,63 +1,47 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-// Baidu Wenxin API configuration
-const WENXIN_API_KEY = process.env.WENXIN_API_KEY;
-const WENXIN_SECRET_KEY = process.env.WENXIN_SECRET_KEY;
-const WENXIN_MODEL = process.env.WENXIN_MODEL || 'ernie-bot-4';
+// DeepSeek Chat Configuration
+const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY;
 
-// Helper function to get Baidu Wenxin access token
-async function getWenxinAccessToken(): Promise<string> {
-  if (!WENXIN_API_KEY || !WENXIN_SECRET_KEY) {
-    throw new Error('Baidu Wenxin API key or secret key not configured');
+async function callDeepSeekAPI(prompt: string) {
+  if (!DEEPSEEK_API_KEY) {
+    throw new Error('DeepSeek API key not configured');
   }
 
-  const response = await fetch(`https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=${WENXIN_API_KEY}&client_secret=${WENXIN_SECRET_KEY}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
+  try {
+    const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${DEEPSEEK_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: 'deepseek-chat',
+        messages: [{
+          role: 'user',
+          content: prompt
+        }],
+        temperature: 0.3,
+        max_tokens: 4000,
+      }),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`DeepSeek API error: ${response.status} - ${errorText}`);
     }
-  });
 
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`Baidu Wenxin token error: ${response.status} - ${errorText}`);
+    const data = await response.json();
+    
+    if (!data.choices || !data.choices[0] || !data.choices[0].message) {
+      throw new Error('No response from DeepSeek API');
+    }
+
+    return data.choices[0].message.content;
+  } catch (error) {
+    console.error('DeepSeek API error:', error);
+    throw new Error(`DeepSeek API error: ${error}`);
   }
-
-  const data = await response.json();
-  return data.access_token;
-}
-
-async function callWenxinAPI(prompt: string) {
-  const accessToken = await getWenxinAccessToken();
-
-  const response = await fetch(`https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/${WENXIN_MODEL}?access_token=${accessToken}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      messages: [{
-        role: 'user',
-        content: prompt
-      }],
-      temperature: 0.3,
-      top_p: 0.95,
-      max_output_tokens: 4000,
-    })
-  });
-
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`Baidu Wenxin API error: ${response.status} - ${errorText}`);
-  }
-
-  const data = await response.json();
-  
-  if (!data.result) {
-    throw new Error('No response from Baidu Wenxin API');
-  }
-
-  return data.result;
 }
 
 export async function POST(request: NextRequest) {
@@ -77,7 +61,7 @@ ${JSON.stringify(storyboard, null, 2)}
 
 Return only the translated JSON with the same structure.`;
 
-    const translatedContent = await callWenxinAPI(translationPrompt);
+    const translatedContent = await callDeepSeekAPI(translationPrompt);
     
     // Try to parse the translated content as JSON
     let translatedStoryboard;

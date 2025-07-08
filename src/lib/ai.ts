@@ -1,5 +1,3 @@
-import OpenAI from 'openai';
-
 // Types for storyboard generation
 export interface StoryboardFrame {
   id: number;
@@ -35,12 +33,6 @@ export interface StoryboardRequest {
     company: string;
   };
 }
-
-// AI Service Configuration
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-const openai = new OpenAI({
-  apiKey: OPENAI_API_KEY,
-});
 
 // DeepSeek Chat Configuration (Primary AI Service)
 const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY;
@@ -106,7 +98,7 @@ async function callDeepSeekAPI(prompt: string, systemPrompt?: string) {
 
 
 
-// Storyboard generation prompts optimized for LLaVA
+// Storyboard generation prompts optimized for DeepSeek Chat
 const BUSINESS_TVC_PROMPT = `You are a creative director at a media production house. Create a compelling TV commercial storyboard based on the following information:
 
 Industry: {industry}
@@ -189,7 +181,7 @@ Format each scene as JSON:
 
 Return only valid JSON array of scenes.`;
 
-// Simple translation fallback for when LLaVA doesn't generate Chinese content
+// Simple translation fallback for when DeepSeek doesn't generate Chinese content
 async function translateToChinese(text: string): Promise<string> {
   try {
     const translationPrompt = `Translate the following English text to Traditional Chinese (繁體中文). Keep brand names, product names, and company names exactly as provided. Only translate the content, not the JSON structure:
@@ -198,7 +190,7 @@ ${text}
 
 Return only the translated text with the same JSON structure.`;
 
-    const data = await callWenxinAPI(translationPrompt);
+    const data = await callDeepSeekAPI(translationPrompt);
     return data.trim();
   } catch (error) {
     console.error('Error translating to Chinese:', error);
@@ -214,7 +206,7 @@ function isEnglishContent(text: string): boolean {
   return englishWordCount > words.length * 0.1; // If more than 10% are English words
 }
 
-// Generate storyboard using DeepSeek Chat (Primary) with fallback to Wenxin
+// Generate storyboard using DeepSeek Chat
 async function generateStoryboardText(request: StoryboardRequest, locale: string = 'en'): Promise<StoryboardFrame[]> {
   try {
     const prompt = request.projectType === 'kol' ? KOL_VIDEO_PROMPT : BUSINESS_TVC_PROMPT;
@@ -309,7 +301,7 @@ async function generateStoryboardText(request: StoryboardRequest, locale: string
   }
 }
 
-// Generate enhanced image description using DeepSeek Chat (Primary) with fallback to Wenxin
+// Generate enhanced image description using DeepSeek Chat
 async function generateEnhancedImageDescription(prompt: string, locale: string = 'en'): Promise<string> {
   try {
     const language = locale === 'zh' ? 'Traditional Chinese' : 'English';
