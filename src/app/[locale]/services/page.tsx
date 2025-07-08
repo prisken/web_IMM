@@ -208,41 +208,25 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
       <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Our Process</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{t('processSection.title')}</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              A proven methodology that ensures your project is delivered on time and exceeds expectations
+              {t('processSection.description')}
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              {
-                step: '01',
-                title: 'Discovery',
-                description: 'We start by understanding your brand, goals, and target audience to create a strategic foundation.'
-              },
-              {
-                step: '02',
-                title: 'Strategy',
-                description: 'Our team develops a comprehensive creative strategy and production plan tailored to your objectives.'
-              },
-              {
-                step: '03',
-                title: 'Creation',
-                description: 'We bring your vision to life with professional production, cutting-edge technology, and creative excellence.'
-              },
-              {
-                step: '04',
-                title: 'Launch',
-                description: 'We ensure your content reaches the right audience and track performance to maximize your ROI.'
-              }
+              { step: '01', key: '0' },
+              { step: '02', key: '1' },
+              { step: '03', key: '2' },
+              { step: '04', key: '3' }
             ].map((item, index) => (
               <div key={index} className="text-center">
                 <div className="w-20 h-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
                   <span className="text-white text-2xl font-bold">{item.step}</span>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">{item.title}</h3>
-                <p className="text-gray-600">{item.description}</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">{t(`processSection.steps.${item.key}.title`)}</h3>
+                <p className="text-gray-600">{t(`processSection.steps.${item.key}.description`)}</p>
               </div>
             ))}
           </div>
@@ -252,16 +236,16 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-700 text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Get Started?</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">{t('ctaSection.title')}</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Let's discuss your project and create something amazing together. Our team is ready to bring your vision to life.
+            {t('ctaSection.description')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300">
-              Get a Free Consultation
+              {t('ctaSection.getConsultation')}
             </button>
             <button className="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300">
-              View Our Work
+              {t('ctaSection.viewWork')}
             </button>
           </div>
         </div>

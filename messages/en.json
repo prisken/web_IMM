@@ -81,6 +81,34 @@
         "title": "Local Expertise",
         "description": "Deep understanding of Hong Kong market and cultural nuances"
       }
+    },
+    "processSection": {
+      "title": "Our Process",
+      "description": "A proven methodology that ensures your project is delivered on time and exceeds expectations",
+      "steps": [
+        {
+          "title": "Discovery",
+          "description": "We start by understanding your brand, goals, and target audience to create a strategic foundation."
+        },
+        {
+          "title": "Strategy",
+          "description": "Our team develops a comprehensive creative strategy and production plan tailored to your objectives."
+        },
+        {
+          "title": "Creation",
+          "description": "We bring your vision to life with professional production, cutting-edge technology, and creative excellence."
+        },
+        {
+          "title": "Launch",
+          "description": "We ensure your content reaches the right audience and track performance to maximize your ROI."
+        }
+      ]
+    },
+    "ctaSection": {
+      "title": "Ready to Get Started?",
+      "description": "Let's discuss your project and create something amazing together. Our team is ready to bring your vision to life.",
+      "getConsultation": "Get a Free Consultation",
+      "viewWork": "View Our Work"
     }
   },
   "ai": {
