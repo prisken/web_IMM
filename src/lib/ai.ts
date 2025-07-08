@@ -36,43 +36,80 @@ export interface StoryboardRequest {
   };
 }
 
-// OpenAI configuration
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
-// LLaVA API configuration for Ollama Cloud
-const OLLAMA_BASE_URL = process.env.OLLAMA_BASE_URL || 'https://api.ollama.ai';
-const OLLAMA_API_KEY = process.env.OLLAMA_API_KEY;
-const LLAVA_MODEL = process.env.LLAVA_MODEL || 'llava:latest';
+// Baidu Wenxin API configuration
+const WENXIN_API_KEY = process.env.WENXIN_API_KEY;
+const WENXIN_SECRET_KEY = process.env.WENXIN_SECRET_KEY;
+const WENXIN_MODEL = process.env.WENXIN_MODEL || 'ernie-bot-4';
 
 // Stable Diffusion API configuration
 const STABLE_DIFFUSION_API_URL = process.env.STABLE_DIFFUSION_API_URL || 'https://api.stability.ai/v1/generation/stable-diffusion-xl-1024-v1-0/text-to-image';
 const STABLE_DIFFUSION_API_KEY = process.env.STABLE_DIFFUSION_API_KEY;
 
-// Helper function to make Ollama API calls with authentication
-async function callOllamaAPI(endpoint: string, data: any) {
-  const headers: Record<string, string> = {
-    'Content-Type': 'application/json',
-  };
-
-  // Add API key if available (for Ollama Cloud)
-  if (OLLAMA_API_KEY) {
-    headers['Authorization'] = `Bearer ${OLLAMA_API_KEY}`;
+// Helper function to get Baidu Wenxin access token
+async function getWenxinAccessToken(): Promise<string> {
+  if (!WENXIN_API_KEY || !WENXIN_SECRET_KEY) {
+    throw new Error('Baidu Wenxin API key or secret key not configured');
   }
 
-  const response = await fetch(`${OLLAMA_BASE_URL}${endpoint}`, {
+  const response = await fetch(`https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=${WENXIN_API_KEY}&client_secret=${WENXIN_SECRET_KEY}`, {
     method: 'POST',
-    headers,
-    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json',
+    }
   });
 
   if (!response.ok) {
     const errorText = await response.text();
-    throw new Error(`Ollama API error: ${response.status} - ${errorText}`);
+    throw new Error(`Baidu Wenxin token error: ${response.status} - ${errorText}`);
   }
 
-  return response.json();
+  const data = await response.json();
+  return data.access_token;
+}
+
+// Helper function to call Baidu Wenxin API
+async function callWenxinAPI(prompt: string, systemPrompt?: string) {
+  const accessToken = await getWenxinAccessToken();
+  
+  const messages = [];
+  
+  if (systemPrompt) {
+    messages.push({
+      role: 'system',
+      content: systemPrompt
+    });
+  }
+  
+  messages.push({
+    role: 'user',
+    content: prompt
+  });
+
+  const response = await fetch(`https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/${WENXIN_MODEL}?access_token=${accessToken}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      messages: messages,
+      temperature: 0.7,
+      top_p: 0.95,
+      max_output_tokens: 4000,
+    })
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Baidu Wenxin API error: ${response.status} - ${errorText}`);
+  }
+
+  const data = await response.json();
+  
+  if (!data.result) {
+    throw new Error('No response from Baidu Wenxin API');
+  }
+
+  return data.result;
 }
 
 // Storyboard generation prompts optimized for LLaVA
@@ -167,17 +204,8 @@ ${text}
 
 Return only the translated text with the same JSON structure.`;
 
-    const data = await callOllamaAPI('/api/generate', {
-      model: LLAVA_MODEL,
-      prompt: translationPrompt,
-      stream: false,
-      options: {
-        temperature: 0.3,
-        top_p: 0.9,
-        max_tokens: 2000,
-      },
-    });
-    return data.response.trim();
+    const data = await callWenxinAPI(translationPrompt);
+    return data.trim();
   } catch (error) {
     console.error('Error translating to Chinese:', error);
     return text; // Return original if translation fails
@@ -213,17 +241,7 @@ async function generateStoryboardText(request: StoryboardRequest, locale: string
       .replace('{tone}', request.tone)
       .replace('{duration}', request.duration);
 
-    const data = await callOllamaAPI('/api/generate', {
-      model: LLAVA_MODEL,
-      prompt: filledPrompt,
-      stream: false,
-      options: {
-        temperature: 0.7,
-        top_p: 0.9,
-        max_tokens: 2000,
-      },
-    });
-    const content = data.response;
+    const content = await callWenxinAPI(filledPrompt);
 
     // Extract JSON from the response - try multiple patterns
     let jsonContent = '';
@@ -312,16 +330,8 @@ Focus on:
 
 Generate the prompt in ${language}. Keep it concise but detailed (around 50-80 words). Focus on the visual elements that will create the most impactful image. Ensure the content is professional and suitable for commercial advertising.`;
 
-    const data = await callOllamaAPI('/api/generate', {
-      model: LLAVA_MODEL,
-      prompt: enhancedPrompt,
-      stream: false,
-      options: {
-        temperature: 0.7,
-        top_p: 0.9,
-      }
-    });
-    const enhancedDescription = data.response?.trim() || prompt;
+    const content = await callWenxinAPI(enhancedPrompt);
+    const enhancedDescription = content?.trim() || prompt;
     
     return enhancedDescription;
   } catch (error) {
@@ -339,16 +349,12 @@ async function translatePromptToEnglish(prompt: string): Promise<string> {
       return prompt;
     }
     
-    const data = await callOllamaAPI('/api/generate', {
-      model: LLAVA_MODEL,
-      prompt: `You are a professional translator. Translate the following Chinese text to English for image generation purposes. Keep the translation professional, accurate, and suitable for AI image generation. Only return the English translation, nothing else:
+    const content = await callWenxinAPI(`You are a professional translator. Translate the following Chinese text to English for image generation purposes. Keep the translation professional, accurate, and suitable for AI image generation. Only return the English translation, nothing else:
 
 Chinese text: ${prompt}
 
-English translation:`,
-      stream: false
-    });
-    const translatedPrompt = data.response?.trim();
+English translation:`);
+    const translatedPrompt = content?.trim();
     
     if (translatedPrompt && translatedPrompt.length > 10 && !/[\u4e00-\u9fff]/.test(translatedPrompt)) {
       return translatedPrompt;

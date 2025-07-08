@@ -1,52 +1,49 @@
 # AI Storyboard Generation Setup
 
-This project uses LLaVA (Large Language and Vision Assistant) for both text generation and image generation to create AI-powered storyboards.
+This project uses Baidu Wenxin (文心一言) for text generation and Stable Diffusion for image generation to create AI-powered storyboards.
 
 ## Prerequisites
 
-1. **Ollama** - Local LLM runtime for LLaVA
-2. **LLaVA Model** - Multimodal model for text and image generation
+1. **Baidu Wenxin API** - Chinese AI service with excellent multilingual support
+2. **Stable Diffusion API** - For high-quality image generation
+3. **Environment Variables** - API keys and configuration
 
 ## Setup Instructions
 
-### 1. Install Ollama
+### 1. Get Baidu Wenxin API Access
 
-Visit [ollama.ai](https://ollama.ai) and install Ollama for your platform.
+1. Visit [Baidu AI Studio](https://aistudio.baidu.com/)
+2. Create an account and apply for Wenxin API access
+3. Get your API Key and Secret Key from the console
 
-### 2. Pull LLaVA Model
+### 2. Get Stable Diffusion API Access
 
-```bash
-# Pull LLaVA model for multimodal capabilities
-ollama pull llava:latest
+1. Visit [Stability AI](https://platform.stability.ai/)
+2. Create an account and get your API key
+3. The API is available in Hong Kong
 
-# Or use a specific version
-ollama pull llava:7b
-```
-
-### 3. Start Ollama Service
-
-```bash
-# Start Ollama (it runs on http://localhost:11434 by default)
-ollama serve
-```
-
-### 4. Environment Configuration
+### 3. Environment Configuration
 
 Create a `.env.local` file in your project root:
 
 ```env
 # AI Services Configuration
 
-# LLaVA Configuration
-OLLAMA_BASE_URL=http://localhost:11434
-LLAVA_MODEL=llava:latest
+# Baidu Wenxin Configuration
+WENXIN_API_KEY=your_wenxin_api_key_here
+WENXIN_SECRET_KEY=your_wenxin_secret_key_here
+WENXIN_MODEL=ernie-bot-4
+
+# Stable Diffusion Configuration
+STABLE_DIFFUSION_API_KEY=your_stability_api_key_here
+STABLE_DIFFUSION_API_URL=https://api.stability.ai/v1/generation/stable-diffusion-xl-1024-v1-0/text-to-image
 
 # Next.js Configuration
 NEXTAUTH_SECRET=your_nextauth_secret_here
 NEXTAUTH_URL=http://localhost:3000
 ```
 
-### 5. Test the Setup
+### 4. Test the Setup
 
 1. Start your development server: `npm run dev`
 2. Navigate to the AI Generator page
@@ -54,82 +51,91 @@ NEXTAUTH_URL=http://localhost:3000
 
 ## Features
 
-### Text Generation (LLaVA)
+### Text Generation (Baidu Wenxin)
 - Generates storyboard scenes with detailed descriptions
 - Provides camera directions and audio notes
 - Creates professional TVC and KOL video storyboards
 - Supports multiple project types and industries
 - Enhanced visual descriptions optimized for image generation
+- Excellent Chinese language support for Hong Kong market
 
-### Image Generation (LLaVA)
+### Image Generation (Stable Diffusion)
 - Generates visual representations of each storyboard frame
-- Uses LLaVA's multimodal capabilities for image generation
+- Uses Stable Diffusion XL for high-quality images
 - Creates cinematic, professional-quality visuals
 - Falls back to placeholder images if generation fails
-- Alternative: Enhanced image descriptions for external image generation services
+- Automatic Chinese to English translation for image prompts
 
 ### Budget Estimation
 - Calculates realistic production budgets
 - Based on duration, project type, and budget tier
 - Provides HK$ pricing for Hong Kong market
 
-### Lead Capture
-- Saves contact information and project details
-- Logs generated storyboards for follow-up
-- Integrates with the media production workflow
+## API Models Used
 
-## Advantages of LLaVA
+### Baidu Wenxin Models
+- **ernie-bot-4**: Latest model with best performance
+- **ernie-bot**: Good balance of performance and cost
+- **ernie-bot-turbo**: Fastest response time
 
-### Unified Model Approach
-- **Single Model**: One model handles both text and image generation
-- **Better Context**: Understands visual concepts when generating descriptions
-- **Cost Effective**: No external API costs for image generation
-- **Faster Processing**: Local processing without network delays
-- **Privacy**: All processing happens locally
+### Stable Diffusion Models
+- **stable-diffusion-xl-1024-v1-0**: High-quality image generation
+- **stable-diffusion-v1-6**: Alternative option
 
-### Enhanced Capabilities
-- **Visual Understanding**: Better comprehension of visual concepts
-- **Consistent Style**: Unified approach to visual and textual content
-- **Multimodal Prompts**: Can handle complex visual-text interactions
-- **Professional Quality**: Optimized for commercial and creative content
+## Hong Kong Region Benefits
+
+### Baidu Wenxin Advantages
+- **Local Availability**: Works perfectly in Hong Kong
+- **Chinese Language**: Native support for Traditional Chinese
+- **Cultural Understanding**: Better understanding of Hong Kong market
+- **Fast Response**: Lower latency for Hong Kong users
+- **Cost Effective**: Competitive pricing for the region
+
+### Stable Diffusion Advantages
+- **Global Availability**: Works worldwide including Hong Kong
+- **High Quality**: Professional-grade image generation
+- **Flexible**: Supports various styles and formats
+- **Reliable**: Stable and consistent performance
 
 ## Troubleshooting
 
-### LLaVA Issues
-- Ensure Ollama is running: `ollama serve`
-- Check model availability: `ollama list`
-- Test with: `ollama run llava:latest "Describe this image: [image_url]"`
-- Verify model size and memory requirements
+### Common Issues
 
-### Performance Tips
-- LLaVA requires more memory than text-only models
-- Consider using smaller LLaVA variants for faster generation
-- Implement caching for generated content
-- Use fallback templates for reliability
+1. **API Key Errors**
+   - Verify your Baidu Wenxin API key and secret key
+   - Check that your account has API access enabled
+   - Ensure you're using the correct model name
 
-## Customization
+2. **Translation Issues**
+   - Baidu Wenxin handles Chinese translation natively
+   - If issues occur, check the prompt format
+   - Verify JSON structure is maintained
 
-### Adding New Project Types
-1. Update prompts in `src/lib/ai.ts`
-2. Add new project types to the form
-3. Update translation files
+3. **Image Generation Failures**
+   - Check Stable Diffusion API key
+   - Verify prompt content is appropriate
+   - Check API rate limits
 
-### Modifying Image Generation
-1. Adjust LLaVA image generation prompts
-2. Use enhanced image descriptions for external services
-3. Customize visual style parameters
+### Error Handling
 
-### Budget Calculation
-1. Modify rates in `calculateBudgetEstimate()`
-2. Add new budget tiers
-3. Adjust for different markets
+The system includes comprehensive error handling:
+- Graceful fallbacks for API failures
+- Placeholder images when generation fails
+- Detailed error logging for debugging
+- User-friendly error messages
 
-## Production Deployment
+## Performance Optimization
 
-For production deployment:
+### Caching
+- Access tokens are cached to reduce API calls
+- Generated content can be cached for reuse
 
-1. **LLaVA**: Deploy to a dedicated server with sufficient GPU memory
-2. **Caching**: Implement Redis or similar for caching
-3. **Monitoring**: Add logging and error tracking
-4. **Security**: Secure API endpoints and validate inputs
-5. **Scaling**: Consider multiple LLaVA instances for high traffic 
+### Rate Limiting
+- Respects API rate limits
+- Implements exponential backoff for retries
+- Queues requests when necessary
+
+### Cost Optimization
+- Efficient prompt engineering
+- Smart caching strategies
+- Batch processing where possible 
