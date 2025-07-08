@@ -1,89 +1,101 @@
 import { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'services' });
+  
   return {
-    title: `Services | Creative Media Production House | Hong Kong`,
-    description: `Professional media production services in Hong Kong. TV commercials, KOL content, brand videos, and creative solutions.`,
+    title: `${t('title')} | Creative Media Production House | Hong Kong`,
+    description: t('subtitle'),
   };
 }
 
-export default function ServicesPage() {
+export default async function ServicesPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'services' });
   const services = [
     {
       id: 'tvc',
-      title: 'TV Commercials',
-      description: 'High-impact television commercials that build brand awareness and drive sales',
+      title: t('tvc.title'),
+      description: t('tvc.description'),
       icon: (
         <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
         </svg>
       ),
-      features: [
-        'Creative concept development',
-        'Professional filming & editing',
-        'Broadcast-ready deliverables',
-        'Multi-format distribution',
-        'Performance tracking'
-      ],
-      process: [
-        'Strategy & Planning',
-        'Creative Development',
-        'Production & Filming',
-        'Post-Production',
-        'Distribution & Launch'
-      ],
-      pricing: 'From HK$200,000'
+      features: t('tvc.features').split(',').map(f => f.trim()),
+      process: t('tvc.process').split(',').map(f => f.trim()),
+      pricing: t('tvc.pricing'),
+      getStarted: t('tvc.getStarted')
     },
     {
       id: 'kol',
-      title: 'KOL Content',
-      description: 'Engaging influencer content that connects with your target audience',
+      title: t('kol.title'),
+      description: t('kol.description'),
       icon: (
         <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
         </svg>
       ),
-      features: [
-        'KOL strategy & selection',
-        'Content creation & editing',
-        'Multi-platform distribution',
-        'Engagement optimization',
-        'ROI measurement'
-      ],
-      process: [
-        'Audience Analysis',
-        'KOL Selection',
-        'Content Creation',
-        'Distribution',
-        'Performance Analysis'
-      ],
-      pricing: 'From HK$50,000'
+      features: t('kol.features').split(',').map(f => f.trim()),
+      process: t('kol.process').split(',').map(f => f.trim()),
+      pricing: t('kol.pricing'),
+      getStarted: t('kol.getStarted')
     },
     {
       id: 'creative',
-      title: 'Creative Solutions',
-      description: 'Innovative creative solutions for all your media needs',
+      title: t('creative.title'),
+      description: t('creative.description'),
       icon: (
         <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
         </svg>
       ),
-      features: [
-        'Brand storytelling',
-        'Social media content',
-        'Corporate videos',
-        'Event coverage',
-        'Creative consulting'
-      ],
-      process: [
-        'Discovery & Research',
-        'Creative Strategy',
-        'Content Creation',
-        'Review & Refinement',
-        'Launch & Optimization'
-      ],
-      pricing: 'From HK$30,000'
+      features: t('creative.features').split(',').map(f => f.trim()),
+      process: t('creative.process').split(',').map(f => f.trim()),
+      pricing: t('creative.pricing'),
+      getStarted: t('creative.getStarted')
+    }
+  ];
+
+  const whyChooseUs = [
+    {
+      title: t('whyChooseUs.creativeExcellence.title'),
+      description: t('whyChooseUs.creativeExcellence.description'),
+      icon: (
+        <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+        </svg>
+      )
+    },
+    {
+      title: t('whyChooseUs.aiInnovation.title'),
+      description: t('whyChooseUs.aiInnovation.description'),
+      icon: (
+        <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+      )
+    },
+    {
+      title: t('whyChooseUs.strategicThinking.title'),
+      description: t('whyChooseUs.strategicThinking.description'),
+      icon: (
+        <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+        </svg>
+      )
+    },
+    {
+      title: t('whyChooseUs.localExpertise.title'),
+      description: t('whyChooseUs.localExpertise.description'),
+      icon: (
+        <svg className="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+      )
     }
   ];
 
@@ -93,17 +105,17 @@ export default function ServicesPage() {
       <section className="py-20 bg-gradient-to-br from-blue-600 to-purple-700 text-white">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Our Services
+            {t('hero.title')}
           </h1>
           <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-            Comprehensive media production solutions tailored to your brand's unique needs
+            {t('hero.description')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300">
-              Get a Quote
+              {t('hero.getQuote')}
             </button>
             <button className="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300">
-              View Portfolio
+              {t('hero.viewPortfolio')}
             </button>
           </div>
         </div>
@@ -113,9 +125,9 @@ export default function ServicesPage() {
       <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">What We Offer</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{t('overview.title')}</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From concept to completion, we handle every aspect of your media production needs
+              {t('overview.description')}
             </p>
           </div>
 
@@ -129,7 +141,7 @@ export default function ServicesPage() {
                 <p className="text-gray-600 mb-6">{service.description}</p>
                 
                 <div className="mb-6">
-                  <h4 className="font-semibold text-gray-900 mb-3">What's Included:</h4>
+                  <h4 className="font-semibold text-gray-900 mb-3">{t('whatsIncluded')}</h4>
                   <ul className="space-y-2">
                     {service.features.map((feature, index) => (
                       <li key={index} className="flex items-center text-gray-600">
@@ -143,7 +155,7 @@ export default function ServicesPage() {
                 </div>
 
                 <div className="mb-6">
-                  <h4 className="font-semibold text-gray-900 mb-3">Our Process:</h4>
+                  <h4 className="font-semibold text-gray-900 mb-3">{t('ourProcess')}</h4>
                   <div className="space-y-2">
                     {service.process.map((step, index) => (
                       <div key={index} className="flex items-center text-gray-600">
@@ -159,7 +171,7 @@ export default function ServicesPage() {
                 <div className="border-t border-gray-200 pt-4">
                   <p className="text-2xl font-bold text-blue-600 mb-4">{service.pricing}</p>
                   <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition-colors duration-200">
-                    Get Started
+                    {service.getStarted}
                   </button>
                 </div>
               </div>
@@ -172,56 +184,19 @@ export default function ServicesPage() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Why Choose IMM Media?</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{t('whyChooseUs.title')}</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We combine creativity, technology, and strategic thinking to deliver exceptional results
+              {t('whyChooseUs.description')}
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                title: 'Creative Excellence',
-                description: 'Award-winning creative team with years of industry experience',
-                icon: (
-                  <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                  </svg>
-                )
-              },
-              {
-                title: 'AI Innovation',
-                description: 'Cutting-edge AI technology for faster, smarter content creation',
-                icon: (
-                  <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                )
-              },
-              {
-                title: 'Results Driven',
-                description: 'Every project is measured by its impact and return on investment',
-                icon: (
-                  <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                  </svg>
-                )
-              },
-              {
-                title: 'Client Partnership',
-                description: 'We work closely with you to achieve your goals and exceed expectations',
-                icon: (
-                  <svg className="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                )
-              }
-            ].map((item, index) => (
+            {whyChooseUs.map((item, index) => (
               <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
                   {item.icon}
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
                 <p className="text-gray-600">{item.description}</p>
               </div>
             ))}

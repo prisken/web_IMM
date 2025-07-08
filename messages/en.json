@@ -17,83 +17,331 @@
   },
   "services": {
     "title": "Our Services",
-    "subtitle": "Comprehensive media production solutions",
+    "subtitle": "Comprehensive media production solutions tailored to your brand's unique needs",
+    "hero": {
+      "title": "Our Services",
+      "description": "Comprehensive media production solutions tailored to your brand's unique needs",
+      "getQuote": "Get a Quote",
+      "viewPortfolio": "View Portfolio"
+    },
+    "overview": {
+      "title": "What We Offer",
+      "description": "From concept to completion, we handle every aspect of your media production needs"
+    },
     "tvc": {
       "title": "TV Commercials",
-      "description": "High-impact television commercials that boost brand awareness and drive sales",
-      "features": [
-        "Creative Concept Development",
-        "Professional Filming & Editing",
-        "Broadcast-Ready Deliverables"
-      ]
+      "description": "High-impact television commercials that build brand awareness and drive sales",
+      "features": "Creative concept development, Professional filming & editing, Broadcast-ready deliverables, Multi-format distribution, Performance tracking",
+      "process": "Strategy & Planning, Creative Development, Production & Filming, Post-Production, Distribution & Launch",
+      "pricing": "From HK$200,000",
+      "getStarted": "Get Started"
     },
     "kol": {
-      "title": "KOL Videos",
-      "description": "Authentic influencer content that connects with your target audience",
-      "features": [
-        "KOL Selection & Matching",
-        "Content Strategy Planning",
-        "Multi-Platform Distribution"
-      ]
+      "title": "KOL Content",
+      "description": "Engaging influencer content that connects with your target audience",
+      "features": "KOL strategy & selection, Content creation & editing, Multi-platform distribution, Engagement optimization, ROI measurement",
+      "process": "Audience Analysis, KOL Selection, Content Creation, Distribution, Performance Analysis",
+      "pricing": "From HK$50,000",
+      "getStarted": "Get Started"
+    },
+    "creative": {
+      "title": "Creative Solutions",
+      "description": "Innovative creative solutions for all your media needs",
+      "features": "Brand storytelling, Social media content, Corporate videos, Event coverage, Creative consulting",
+      "process": "Discovery & Research, Creative Strategy, Content Creation, Review & Refinement, Launch & Optimization",
+      "pricing": "From HK$30,000",
+      "getStarted": "Get Started"
     },
     "digital": {
       "title": "Digital Content",
-      "description": "Innovative digital content solutions that enhance your brand's online presence",
-      "features": [
-        "Social Media Content",
-        "Brand Video Production",
-        "Interactive Content"
-      ]
+      "description": "Engaging digital content that drives results across all platforms",
+      "features": "Social media campaigns, Digital advertising, Web content creation, Email marketing videos, Interactive content",
+      "process": "Platform Analysis, Content Strategy, Creative Development, Multi-platform Distribution, Performance Optimization",
+      "pricing": "From HK$25,000",
+      "getStarted": "Get Started"
     },
-    "creative": {
-      "title": "Creative Services",
-      "description": "Unique creative concepts and brand storytelling",
-      "features": [
-        "Brand strategy development",
-        "Creative concept design",
-        "Storyboard creation"
-      ]
+    "whatsIncluded": "What's Included:",
+    "ourProcess": "Our Process:",
+    "whyChooseUs": {
+      "title": "Why Choose IMM Media?",
+      "description": "We combine creativity, technology, and strategic thinking to deliver exceptional results",
+      "creativeExcellence": {
+        "title": "Creative Excellence",
+        "description": "Award-winning creative team with years of industry experience"
+      },
+      "aiInnovation": {
+        "title": "AI Innovation",
+        "description": "Cutting-edge AI technology for faster, smarter content creation"
+      },
+      "strategicThinking": {
+        "title": "Strategic Thinking",
+        "description": "Data-driven approach that ensures your content delivers measurable results"
+      },
+      "localExpertise": {
+        "title": "Local Expertise",
+        "description": "Deep understanding of Hong Kong market and cultural nuances"
+      }
     }
   },
   "ai": {
     "title": "AI Storyboard Generator",
     "subtitle": "Revolutionary Creative Tool",
     "description": "Generate professional storyboards and creative concepts in minutes using advanced AI technology.",
-    "features": {
-      "smart": "Smart Analysis",
-      "smartDesc": "AI-driven creative analysis that understands your brand and target audience",
-      "visual": "Visual Generation",
-      "visualDesc": "Generate high-quality visual concepts and storyboards instantly",
-      "instant": "Instant Results",
-      "instantDesc": "Get complete creative solutions in minutes"
-    },
-    "cta": "Start Generating"
+    "cta": "Start Generating",
+    "generator": {
+      "header": {
+        "badge": "AI-Powered Storyboard Generator",
+        "title": "Create Your Storyboard",
+        "description": "Transform your ideas into professional storyboards in minutes with our AI technology"
+      },
+      "steps": {
+        "projectDetails": {
+          "title": "Project Details",
+          "description": "Tell us about your project"
+        },
+        "brandMessage": {
+          "title": "Brand & Message",
+          "description": "Define your brand and key message"
+        },
+        "creativeDirection": {
+          "title": "Creative Direction",
+          "description": "Choose your style and tone"
+        },
+        "contactInfo": {
+          "title": "Contact Info",
+          "description": "Get your storyboard"
+        }
+      },
+      "form": {
+        "projectType": {
+          "label": "Project Type *",
+          "placeholder": "Select project type",
+          "options": {
+            "tvc": "TV Commercial",
+            "kol": "KOL Content",
+            "brand": "Brand Video",
+            "social": "Social Media Content",
+            "corporate": "Corporate Video"
+          }
+        },
+        "industry": {
+          "label": "Industry *",
+          "placeholder": "Select industry",
+          "options": {
+            "technology": "Technology",
+            "fashion": "Fashion & Beauty",
+            "food": "Food & Beverage",
+            "finance": "Finance",
+            "healthcare": "Healthcare",
+            "education": "Education",
+            "automotive": "Automotive",
+            "realEstate": "Real Estate",
+            "other": "Other"
+          }
+        },
+        "targetAudience": {
+          "label": "Target Audience *",
+          "ageRange": {
+            "label": "Age Range *",
+            "placeholder": "Select age range",
+            "options": {
+              "children": "Children (0-12)",
+              "teens": "Teens (13-17)",
+              "youngAdults": "Young Adults (18-25)",
+              "adults": "Adults (26-35)",
+              "middleAge": "Middle Age (36-50)",
+              "seniors": "Seniors (51+)",
+              "allAges": "All Ages"
+            }
+          },
+          "gender": {
+            "label": "Gender *",
+            "placeholder": "Select gender",
+            "options": {
+              "male": "Male",
+              "female": "Female",
+              "allGender": "All Gender"
+            }
+          }
+        },
+        "brandName": {
+          "label": "Brand Name *",
+          "placeholder": "Your brand name"
+        },
+        "productDescription": {
+          "label": "Product/Service Description *",
+          "placeholder": "Describe your product or service"
+        },
+        "keyMessage": {
+          "label": "Key Message *",
+          "placeholder": "What's the main message you want to convey?"
+        },
+        "tone": {
+          "label": "Tone & Style *",
+          "placeholder": "Select tone",
+          "options": {
+            "professional": "Professional & Corporate",
+            "casual": "Casual & Friendly",
+            "luxury": "Luxury & Premium",
+            "energetic": "Energetic & Dynamic",
+            "emotional": "Emotional & Heartfelt"
+          }
+        },
+        "duration": {
+          "label": "Duration *",
+          "placeholder": "Select duration",
+          "options": {
+            "15s": "15 seconds",
+            "30s": "30 seconds",
+            "60s": "60 seconds",
+            "90s": "90 seconds",
+            "120s": "2 minutes"
+          }
+        },
+        "budget": {
+          "label": "Budget Range",
+          "placeholder": "Select budget range",
+          "options": {
+            "low": "Under $10,000",
+            "medium": "$10,000 - $50,000",
+            "high": "$50,000 - $100,000",
+            "premium": "Over $100,000"
+          }
+        },
+        "contact": {
+          "name": {
+            "label": "Full Name *",
+            "placeholder": "Your full name"
+          },
+          "email": {
+            "label": "Email Address *",
+            "placeholder": "your.email@example.com"
+          },
+          "phone": {
+            "label": "Phone Number",
+            "placeholder": "Your phone number"
+          },
+          "company": {
+            "label": "Company Name",
+            "placeholder": "Your company name"
+          }
+        }
+      },
+      "buttons": {
+        "next": "Next",
+        "previous": "Previous",
+        "generate": "Generate Storyboard",
+        "download": "Download Storyboard",
+        "startOver": "Start Over"
+      },
+      "generating": "Generating your storyboard...",
+      "success": "Your storyboard is ready!",
+      "loading": {
+        "title": "Generating Your Storyboard",
+        "subtitle": "This may take up to 3 minutes",
+        "steps": {
+          "analyzing": "Analyzing your project requirements...",
+          "creating": "Creating storyboard content...",
+          "generating": "Generating visual concepts...",
+          "finalizing": "Finalizing your storyboard..."
+        },
+        "progress": "Progress: {current}/{total} steps completed"
+      },
+      "validation": {
+        "required": "This field is required",
+        "email": "Please enter a valid email address",
+        "phone": "Please enter a valid phone number",
+        "name": "Please enter your full name",
+        "company": "Please enter your company name",
+        "contactIncomplete": "Please complete your contact information before generating the storyboard",
+        "projectIncomplete": "Please complete all required project details"
+      }
+    }
   },
   "portfolio": {
-    "title": "Portfolio",
-    "subtitle": "Our Creative Work",
+    "title": "Our Portfolio",
+    "subtitle": "Showcasing our best work across various industries and media formats",
     "description": "Explore our amazing work for various brands and industries.",
-    "filterAll": "All",
-    "filterTVC": "TV Commercials",
-    "filterKOL": "KOL Content",
-    "filterDigital": "Digital Content",
+    "hero": {
+      "title": "Our Portfolio",
+      "description": "Showcasing our best work across various industries and media formats",
+      "getQuote": "Get a Quote",
+      "contactUs": "Contact Us"
+    },
+    "filters": {
+      "all": "All Projects",
+      "tvc": "TV Commercials",
+      "kol": "KOL Content",
+      "brand": "Brand Videos",
+      "social": "Social Media",
+      "corporate": "Corporate"
+    },
     "projects": [
       {
-        "title": "TV Commercial Project",
-        "description": "Television commercials produced for well-known brands",
-        "tags": ["TV Commercials", "Brand Promotion"]
+        "title": "TechCorp Brand Campaign",
+        "category": "tvc",
+        "client": "TechCorp HK",
+        "description": "A comprehensive brand campaign that increased brand awareness by 200% and drove significant sales growth.",
+        "tags": "TV Commercial, Brand Awareness, Technology",
+        "results": "200% increase in brand awareness, 150% increase in website traffic, 300% increase in lead generation",
+        "duration": "3 months",
+        "budget": "HK$500,000"
       },
       {
-        "title": "KOL Collaboration Project",
-        "description": "Video content created in collaboration with influencers",
-        "tags": ["KOL", "Social Media"]
+        "title": "Fashion Forward KOL Series",
+        "category": "kol",
+        "client": "Fashion Forward",
+        "description": "Multi-platform KOL campaign featuring top fashion influencers in Hong Kong.",
+        "tags": "KOL Content, Fashion, Social Media",
+        "results": "2M+ total reach, 500K+ engagements, 25% increase in sales",
+        "duration": "2 months",
+        "budget": "HK$200,000"
       },
       {
-        "title": "Digital Content Project",
-        "description": "Innovative digital marketing content",
-        "tags": ["Digital Marketing", "Content Creation"]
+        "title": "StartupXYZ Product Launch",
+        "category": "brand",
+        "client": "StartupXYZ",
+        "description": "Innovative product launch video that captured the essence of the brand and resonated with target audience.",
+        "tags": "Brand Video, Product Launch, Startup",
+        "results": "500K+ views, 15% conversion rate, 50% increase in app downloads",
+        "duration": "1 month",
+        "budget": "HK$150,000"
+      },
+      {
+        "title": "Lifestyle Brands Social Campaign",
+        "category": "social",
+        "client": "Lifestyle Brands",
+        "description": "Engaging social media campaign that connected with young professionals across multiple platforms.",
+        "tags": "Social Media, Lifestyle, Multi-platform",
+        "results": "1M+ impressions, 100K+ engagements, 40% increase in followers",
+        "duration": "6 weeks",
+        "budget": "HK$100,000"
+      },
+      {
+        "title": "FinanceCorp Corporate Video",
+        "category": "corporate",
+        "client": "FinanceCorp",
+        "description": "Professional corporate video showcasing company values and achievements.",
+        "tags": "Corporate, Finance, Professional",
+        "results": "Improved employee engagement, Enhanced brand reputation, Increased investor confidence",
+        "duration": "2 months",
+        "budget": "HK$300,000"
+      },
+      {
+        "title": "Foodie Paradise TVC",
+        "category": "tvc",
+        "client": "Foodie Paradise",
+        "description": "Mouth-watering TV commercial that showcased the restaurant's signature dishes and atmosphere.",
+        "tags": "TV Commercial, Food & Beverage, Restaurant",
+        "results": "300% increase in reservations, 50% increase in takeaway orders, Enhanced brand recognition",
+        "duration": "1 month",
+        "budget": "HK$250,000"
       }
-    ]
+    ],
+    "noProjects": "No projects found for this category",
+    "viewProject": "View Project",
+    "duration": "Duration",
+    "budget": "Budget"
   },
   "testimonials": {
     "title": "Client Testimonials",
@@ -141,13 +389,41 @@
     "title": "Contact Us",
     "subtitle": "Start Your Creative Project",
     "description": "Ready to start your next creative project? We look forward to working with you.",
+    "getInTouch": "Get in Touch",
+    "sendMessage": "Send us a message",
+    "contactInfo": {
+      "phone": {
+        "title": "Phone",
+        "value": "+852 1234 5678"
+      },
+      "email": {
+        "title": "Email",
+        "value": "hello@immmedia.hk"
+      },
+      "address": {
+        "title": "Address",
+        "value": "Central, Hong Kong"
+      }
+    },
+    "form": {
+      "name": {
+        "label": "Name",
+        "placeholder": "Your name"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "your@email.com"
+      },
+      "message": {
+        "label": "Message",
+        "placeholder": "Tell us about your project..."
+      },
+      "submit": "Send Message"
+    },
     "cta": {
       "title": "Ready to Get Started?",
       "description": "Let's discuss your project and create something amazing together",
       "button": "Contact Us"
-    },
-    "form": {
-      "submit": "Send Message"
     }
   },
   "footer": {
@@ -191,5 +467,49 @@
     "next": "Next",
     "previous": "Previous",
     "back": "Back"
+  },
+  "errors": {
+    "notFound": {
+      "title": "404 - Page Not Found",
+      "description": "Sorry, the page you are looking for does not exist.",
+      "goHome": "Go Home"
+    }
+  },
+  "ai-generator": {
+    "title": "AI Storyboard Generator",
+    "subtitle": "Create Professional Storyboards with AI",
+    "description": "Generate professional storyboards and creative concepts in minutes using advanced AI technology.",
+    "steps": {
+      "projectDetails": "Project Details",
+      "brandMessage": "Brand & Message", 
+      "creativeDirection": "Creative Direction",
+      "contactInfo": "Contact Info"
+    },
+    "form": {
+      "projectType": "Project Type",
+      "industry": "Industry",
+      "targetAudience": "Target Audience",
+      "brandName": "Brand Name",
+      "productDescription": "Product Description",
+      "keyMessage": "Key Message",
+      "tone": "Tone & Style",
+      "duration": "Duration",
+      "budget": "Budget Range",
+      "contact": {
+        "name": "Full Name",
+        "email": "Email Address",
+        "phone": "Phone Number",
+        "company": "Company Name"
+      }
+    },
+    "buttons": {
+      "next": "Next",
+      "previous": "Previous",
+      "generate": "Generate Storyboard",
+      "download": "Download Storyboard",
+      "startOver": "Start Over"
+    },
+    "generating": "Generating your storyboard...",
+    "success": "Your storyboard is ready!"
   }
 } 

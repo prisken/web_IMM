@@ -22,7 +22,7 @@ export default function LanguageSwitcher() {
       <select
         value={currentLocale}
         onChange={(e) => handleLanguageChange(e.target.value)}
-        className="bg-white border border-gray-300 rounded-lg px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        className="bg-white border border-gray-300 rounded-lg px-2 sm:px-3 py-2 sm:py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent min-h-[44px] sm:min-h-[32px]"
       >
         {locales.map((loc) => (
           <option key={loc} value={loc}>

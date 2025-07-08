@@ -41,7 +41,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
             <div className="grid md:grid-cols-2 gap-12">
               {/* Contact Information */}
               <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-8">Get in Touch</h2>
+                <h2 className="text-3xl font-bold text-gray-900 mb-8">{t('getInTouch')}</h2>
                 <div className="space-y-6">
                   <div className="flex items-start">
                     <div className="bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center mr-4">
@@ -50,8 +50,8 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
                       </svg>
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Phone</h3>
-                      <p className="text-gray-600">+852 1234 5678</p>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('contactInfo.phone.title')}</h3>
+                      <p className="text-gray-600">{t('contactInfo.phone.value')}</p>
                     </div>
                   </div>
                   
@@ -62,8 +62,8 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
                       </svg>
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Email</h3>
-                      <p className="text-gray-600">hello@immmedia.hk</p>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('contactInfo.email.title')}</h3>
+                      <p className="text-gray-600">{t('contactInfo.email.value')}</p>
                     </div>
                   </div>
                   
@@ -75,8 +75,8 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
                       </svg>
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Address</h3>
-                      <p className="text-gray-600">Central, Hong Kong</p>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('contactInfo.address.title')}</h3>
+                      <p className="text-gray-600">{t('contactInfo.address.value')}</p>
                     </div>
                   </div>
                 </div>
@@ -84,44 +84,44 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
 
               {/* Contact Form */}
               <div className="bg-white rounded-xl shadow-lg p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Send us a message</h2>
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">{t('sendMessage')}</h2>
                 <form className="space-y-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                      Name
+                      {t('form.name.label')}
                     </label>
                     <input
                       type="text"
                       id="name"
                       name="name"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="Your name"
+                      placeholder={t('form.name.placeholder')}
                     />
                   </div>
                   
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                      Email
+                      {t('form.email.label')}
                     </label>
                     <input
                       type="email"
                       id="email"
                       name="email"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="your@email.com"
+                      placeholder={t('form.email.placeholder')}
                     />
                   </div>
                   
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                      Message
+                      {t('form.message.label')}
                     </label>
                     <textarea
                       id="message"
                       name="message"
                       rows={4}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="Tell us about your project..."
+                      placeholder={t('form.message.placeholder')}
                     ></textarea>
                   </div>
                   

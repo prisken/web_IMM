@@ -17,83 +17,331 @@
   },
   "services": {
     "title": "我們的服務",
-    "subtitle": "全面的媒體製作解決方案",
+    "subtitle": "為您品牌獨特需求量身定制的全面媒體製作解決方案",
+    "hero": {
+      "title": "我們的服務",
+      "description": "為您品牌獨特需求量身定制的全面媒體製作解決方案",
+      "getQuote": "獲取報價",
+      "viewPortfolio": "查看作品集"
+    },
+    "overview": {
+      "title": "我們提供的服務",
+      "description": "從概念到完成，我們處理您媒體製作需求的每個方面"
+    },
     "tvc": {
       "title": "電視廣告",
-      "description": "高影響力的電視廣告，提升品牌知名度並促進銷售",
-      "features": [
-        "創意概念開發",
-        "專業拍攝與剪輯",
-        "廣播級交付物"
-      ]
+      "description": "高影響力的電視廣告，建立品牌知名度並推動銷售",
+      "features": "創意概念開發, 專業拍攝與剪輯, 廣播級交付物, 多格式分發, 績效追蹤",
+      "process": "策略與規劃, 創意開發, 製作與拍攝, 後期製作, 分發與發布",
+      "pricing": "起價港幣200,000元",
+      "getStarted": "開始使用"
     },
     "kol": {
-      "title": "KOL視頻",
-      "description": "真實的網紅內容，與您的目標受眾建立聯繫",
-      "features": [
-        "KOL選擇與配對",
-        "內容策略規劃",
-        "多平台分發"
-      ]
-    },
-    "digital": {
-      "title": "數位內容",
-      "description": "創新的數位內容解決方案，提升品牌在線影響力",
-      "features": [
-        "社交媒體內容",
-        "品牌視頻製作",
-        "互動式內容"
-      ]
+      "title": "KOL內容",
+      "description": "引人入勝的網紅內容，與您的目標受眾建立聯繫",
+      "features": "KOL策略與選擇, 內容創作與剪輯, 多平台分發, 參與度優化, 投資回報率測量",
+      "process": "受眾分析, KOL選擇, 內容創作, 分發, 績效分析",
+      "pricing": "起價港幣50,000元",
+      "getStarted": "開始使用"
     },
     "creative": {
-      "title": "創意服務",
-      "description": "獨特的創意概念和品牌故事敘述",
-      "features": [
-        "品牌策略開發",
-        "創意概念設計",
-        "故事板製作"
-      ]
+      "title": "創意解決方案",
+      "description": "為您所有媒體需求提供創新的創意解決方案",
+      "features": "品牌故事講述, 社交媒體內容, 企業視頻, 活動報導, 創意諮詢",
+      "process": "發現與研究, 創意策略, 內容創作, 審查與改進, 發布與優化",
+      "pricing": "起價港幣30,000元",
+      "getStarted": "開始使用"
+    },
+    "digital": {
+      "title": "數碼內容",
+      "description": "吸引人的數碼內容，在所有平台上都能產生效果",
+      "features": "社交媒體活動, 數碼廣告, 網頁內容創作, 電郵營銷視頻, 互動內容",
+      "process": "平台分析, 內容策略, 創意開發, 多平台分發, 績效優化",
+      "pricing": "起價港幣25,000元",
+      "getStarted": "開始使用"
+    },
+    "whatsIncluded": "包含內容：",
+    "ourProcess": "我們的流程：",
+    "whyChooseUs": {
+      "title": "為什麼選擇IMM媒體？",
+      "description": "我們結合創意、技術和戰略思維，提供卓越的成果",
+      "creativeExcellence": {
+        "title": "創意卓越",
+        "description": "屢獲殊榮的創意團隊，擁有多年行業經驗"
+      },
+      "aiInnovation": {
+        "title": "AI創新",
+        "description": "尖端AI技術，實現更快、更智能的內容創作"
+      },
+      "strategicThinking": {
+        "title": "戰略思維",
+        "description": "數據驅動的方法，確保您的內容提供可衡量的結果"
+      },
+      "localExpertise": {
+        "title": "本地專業知識",
+        "description": "對香港市場和文化細微差別的深入理解"
+      }
     }
   },
   "ai": {
     "title": "AI故事板生成器",
     "subtitle": "革命性的創意工具",
     "description": "使用先進的AI技術，在幾分鐘內生成專業的故事板和創意概念。",
-    "features": {
-      "smart": "智能分析",
-      "smartDesc": "AI驅動的創意分析，理解您的品牌和目標受眾",
-      "visual": "視覺生成",
-      "visualDesc": "即時生成高質量的視覺概念和故事板",
-      "instant": "即時結果",
-      "instantDesc": "幾分鐘內獲得完整的創意方案"
-    },
-    "cta": "開始生成"
+    "cta": "開始生成",
+    "generator": {
+      "header": {
+        "badge": "AI驅動故事板生成器",
+        "title": "創建您的故事板",
+        "description": "使用我們的AI技術，在幾分鐘內將您的想法轉化為專業故事板"
+      },
+      "steps": {
+        "projectDetails": {
+          "title": "項目詳情",
+          "description": "告訴我們您的項目"
+        },
+        "brandMessage": {
+          "title": "品牌與訊息",
+          "description": "定義您的品牌和關鍵訊息"
+        },
+        "creativeDirection": {
+          "title": "創意方向",
+          "description": "選擇您的風格和語調"
+        },
+        "contactInfo": {
+          "title": "聯絡資訊",
+          "description": "獲取您的故事板"
+        }
+      },
+      "form": {
+        "projectType": {
+          "label": "項目類型 *",
+          "placeholder": "選擇項目類型",
+          "options": {
+            "tvc": "電視廣告",
+            "kol": "KOL內容",
+            "brand": "品牌視頻",
+            "social": "社交媒體內容",
+            "corporate": "企業視頻"
+          }
+        },
+        "industry": {
+          "label": "行業 *",
+          "placeholder": "選擇行業",
+          "options": {
+            "technology": "科技",
+            "fashion": "時尚與美容",
+            "food": "食品與飲料",
+            "finance": "金融",
+            "healthcare": "醫療保健",
+            "education": "教育",
+            "automotive": "汽車",
+            "realEstate": "房地產",
+            "other": "其他"
+          }
+        },
+        "targetAudience": {
+          "label": "目標受眾 *",
+          "ageRange": {
+            "label": "年齡範圍 *",
+            "placeholder": "選擇年齡範圍",
+            "options": {
+              "children": "兒童 (0-12歲)",
+              "teens": "青少年 (13-17歲)",
+              "youngAdults": "年輕成人 (18-25歲)",
+              "adults": "成人 (26-35歲)",
+              "middleAge": "中年 (36-50歲)",
+              "seniors": "長者 (51歲+)",
+              "allAges": "所有年齡"
+            }
+          },
+          "gender": {
+            "label": "性別 *",
+            "placeholder": "選擇性別",
+            "options": {
+              "male": "男性",
+              "female": "女性",
+              "allGender": "所有性別"
+            }
+          }
+        },
+        "brandName": {
+          "label": "品牌名稱 *",
+          "placeholder": "您的品牌名稱"
+        },
+        "productDescription": {
+          "label": "產品/服務描述 *",
+          "placeholder": "描述您的產品或服務"
+        },
+        "keyMessage": {
+          "label": "關鍵訊息 *",
+          "placeholder": "您想要傳達的主要訊息是什麼？"
+        },
+        "tone": {
+          "label": "語調與風格 *",
+          "placeholder": "選擇語調",
+          "options": {
+            "professional": "專業與企業",
+            "casual": "輕鬆友好",
+            "luxury": "奢華高級",
+            "energetic": "活力動態",
+            "emotional": "情感真摯"
+          }
+        },
+        "duration": {
+          "label": "時長 *",
+          "placeholder": "選擇時長",
+          "options": {
+            "15s": "15秒",
+            "30s": "30秒",
+            "60s": "60秒",
+            "90s": "90秒",
+            "120s": "2分鐘"
+          }
+        },
+        "budget": {
+          "label": "預算範圍",
+          "placeholder": "選擇預算範圍",
+          "options": {
+            "low": "10,000美元以下",
+            "medium": "10,000 - 50,000美元",
+            "high": "50,000 - 100,000美元",
+            "premium": "100,000美元以上"
+          }
+        },
+        "contact": {
+          "name": {
+            "label": "全名 *",
+            "placeholder": "您的全名"
+          },
+          "email": {
+            "label": "電子郵件地址 *",
+            "placeholder": "your.email@example.com"
+          },
+          "phone": {
+            "label": "電話號碼",
+            "placeholder": "您的電話號碼"
+          },
+          "company": {
+            "label": "公司名稱",
+            "placeholder": "您的公司名稱"
+          }
+        }
+      },
+      "buttons": {
+        "next": "下一步",
+        "previous": "上一步",
+        "generate": "生成故事板",
+        "download": "下載故事板",
+        "startOver": "重新開始"
+      },
+      "generating": "正在生成您的故事板...",
+      "success": "您的故事板已準備就緒！",
+      "loading": {
+        "title": "正在生成您的故事板",
+        "subtitle": "這可能需要長達3分鐘",
+        "steps": {
+          "analyzing": "正在分析您的項目需求...",
+          "creating": "正在創建故事板內容...",
+          "generating": "正在生成視覺概念...",
+          "finalizing": "正在完成您的故事板..."
+        },
+        "progress": "進度：已完成 {current}/{total} 個步驟"
+      },
+      "validation": {
+        "required": "此欄位為必填",
+        "email": "請輸入有效的電子郵件地址",
+        "phone": "請輸入有效的電話號碼",
+        "name": "請輸入您的全名",
+        "company": "請輸入您的公司名稱",
+        "contactIncomplete": "請在生成故事板前完成您的聯絡資訊",
+        "projectIncomplete": "請完成所有必要的項目詳情"
+      }
+    }
   },
   "portfolio": {
-    "title": "作品集",
-    "subtitle": "我們的創意作品",
+    "title": "我們的作品集",
+    "subtitle": "展示我們在各個行業和媒體格式的最佳作品",
     "description": "探索我們為各種品牌和行業創作的精彩作品。",
-    "filterAll": "全部",
-    "filterTVC": "電視廣告",
-    "filterKOL": "KOL內容",
-    "filterDigital": "數位內容",
+    "hero": {
+      "title": "我們的作品集",
+      "description": "展示我們在各個行業和媒體格式的最佳作品",
+      "getQuote": "獲取報價",
+      "contactUs": "聯絡我們"
+    },
+    "filters": {
+      "all": "所有項目",
+      "tvc": "電視廣告",
+      "kol": "KOL內容",
+      "brand": "品牌視頻",
+      "social": "社交媒體",
+      "corporate": "企業"
+    },
     "projects": [
       {
-        "title": "電視廣告項目",
-        "description": "為知名品牌製作的電視廣告",
-        "tags": ["電視廣告", "品牌推廣"]
+        "title": "科技公司品牌活動",
+        "category": "tvc",
+        "client": "香港科技公司",
+        "description": "全面的品牌活動，品牌知名度提升200%，推動顯著銷售增長。",
+        "tags": "電視廣告, 品牌知名度, 科技",
+        "results": "品牌知名度提升200%, 網站流量提升150%, 潛在客戶生成提升300%",
+        "duration": "3個月",
+        "budget": "港幣500,000元"
       },
       {
-        "title": "KOL合作項目",
-        "description": "與網紅合作的視頻內容",
-        "tags": ["KOL", "社交媒體"]
+        "title": "時尚前進KOL系列",
+        "category": "kol",
+        "client": "時尚前進",
+        "description": "多平台KOL活動，邀請香港頂級時尚網紅參與。",
+        "tags": "KOL內容, 時尚, 社交媒體",
+        "results": "總觸及200萬+, 參與度50萬+, 銷售提升25%",
+        "duration": "2個月",
+        "budget": "港幣200,000元"
       },
       {
-        "title": "數位內容項目",
-        "description": "創新的數位營銷內容",
-        "tags": ["數位營銷", "內容創作"]
+        "title": "初創企業產品發布",
+        "category": "brand",
+        "client": "初創企業XYZ",
+        "description": "創新的產品發布視頻，捕捉品牌精髓並與目標受眾產生共鳴。",
+        "tags": "品牌視頻, 產品發布, 初創企業",
+        "results": "觀看次數50萬+, 轉換率15%, 應用下載提升50%",
+        "duration": "1個月",
+        "budget": "港幣150,000元"
+      },
+      {
+        "title": "生活方式品牌社交活動",
+        "category": "social",
+        "client": "生活方式品牌",
+        "description": "引人入勝的社交媒體活動，與多個平台的年輕專業人士建立聯繫。",
+        "tags": "社交媒體, 生活方式, 多平台",
+        "results": "印象數100萬+, 參與度10萬+, 粉絲提升40%",
+        "duration": "6週",
+        "budget": "港幣100,000元"
+      },
+      {
+        "title": "金融公司企業視頻",
+        "category": "corporate",
+        "client": "金融公司",
+        "description": "專業的企業視頻，展示公司價值觀和成就。",
+        "tags": "企業, 金融, 專業",
+        "results": "改善員工參與度, 提升品牌聲譽, 增加投資者信心",
+        "duration": "2個月",
+        "budget": "港幣300,000元"
+      },
+      {
+        "title": "美食天堂電視廣告",
+        "category": "tvc",
+        "client": "美食天堂",
+        "description": "令人垂涎的電視廣告，展示餐廳的招牌菜和氛圍。",
+        "tags": "電視廣告, 餐飲, 餐廳",
+        "results": "預訂量提升300%, 外賣訂單提升50%, 提升品牌認知度",
+        "duration": "1個月",
+        "budget": "港幣250,000元"
       }
-    ]
+    ],
+    "noProjects": "此類別沒有找到項目",
+    "viewProject": "查看項目",
+    "duration": "時長",
+    "budget": "預算"
   },
   "testimonials": {
     "title": "客戶評價",
@@ -141,13 +389,41 @@
     "title": "聯絡我們",
     "subtitle": "開始您的創意項目",
     "description": "準備好開始您的下一個創意項目了嗎？我們期待與您合作。",
+    "getInTouch": "與我們聯絡",
+    "sendMessage": "發送訊息給我們",
+    "contactInfo": {
+      "phone": {
+        "title": "電話",
+        "value": "+852 1234 5678"
+      },
+      "email": {
+        "title": "電子郵件",
+        "value": "hello@immmedia.hk"
+      },
+      "address": {
+        "title": "地址",
+        "value": "香港中環"
+      }
+    },
+    "form": {
+      "name": {
+        "label": "姓名",
+        "placeholder": "您的姓名"
+      },
+      "email": {
+        "label": "電子郵件",
+        "placeholder": "your@email.com"
+      },
+      "message": {
+        "label": "訊息",
+        "placeholder": "告訴我們您的項目..."
+      },
+      "submit": "發送訊息"
+    },
     "cta": {
       "title": "準備好開始了嗎？",
       "description": "讓我們討論您的項目，一起創造令人驚嘆的作品",
       "button": "聯絡我們"
-    },
-    "form": {
-      "submit": "發送訊息"
     }
   },
   "footer": {
@@ -191,5 +467,49 @@
     "next": "下一步",
     "previous": "上一步",
     "back": "返回"
+  },
+  "errors": {
+    "notFound": {
+      "title": "404 - 頁面未找到",
+      "description": "抱歉，您要找的頁面不存在。",
+      "goHome": "返回首頁"
+    }
+  },
+  "ai-generator": {
+    "title": "AI故事板生成器",
+    "subtitle": "使用AI創建專業故事板",
+    "description": "使用先進的AI技術，在幾分鐘內生成專業的故事板和創意概念。",
+    "steps": {
+      "projectDetails": "項目詳情",
+      "brandMessage": "品牌與訊息",
+      "creativeDirection": "創意方向",
+      "contactInfo": "聯絡資訊"
+    },
+    "form": {
+      "projectType": "項目類型",
+      "industry": "行業",
+      "targetAudience": "目標受眾",
+      "brandName": "品牌名稱",
+      "productDescription": "產品描述",
+      "keyMessage": "關鍵訊息",
+      "tone": "語調與風格",
+      "duration": "時長",
+      "budget": "預算範圍",
+      "contact": {
+        "name": "姓名",
+        "email": "電子郵件",
+        "phone": "電話號碼",
+        "company": "公司名稱"
+      }
+    },
+    "buttons": {
+      "next": "下一步",
+      "previous": "上一步",
+      "generate": "生成故事板",
+      "download": "下載故事板",
+      "startOver": "重新開始"
+    },
+    "generating": "正在生成您的故事板...",
+    "success": "您的故事板已準備就緒！"
   }
 } 
