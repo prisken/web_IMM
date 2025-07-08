@@ -36,7 +36,16 @@ export interface StoryboardRequest {
   };
 }
 
-// Baidu Wenxin API configuration
+// AI Service Configuration
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+const openai = new OpenAI({
+  apiKey: OPENAI_API_KEY,
+});
+
+// DeepSeek Chat Configuration (Primary AI Service)
+const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY;
+
+// Baidu Wenxin API configuration (fallback)
 const WENXIN_API_KEY = process.env.WENXIN_API_KEY;
 const WENXIN_SECRET_KEY = process.env.WENXIN_SECRET_KEY;
 const WENXIN_MODEL = process.env.WENXIN_MODEL || 'ernie-bot-4';
@@ -67,7 +76,60 @@ async function getWenxinAccessToken(): Promise<string> {
   return data.access_token;
 }
 
-// Helper function to call Baidu Wenxin API
+// Helper function to call DeepSeek Chat API (Primary)
+async function callDeepSeekAPI(prompt: string, systemPrompt?: string) {
+  if (!DEEPSEEK_API_KEY) {
+    throw new Error('DeepSeek API key not configured');
+  }
+
+  try {
+    const messages = [];
+    
+    if (systemPrompt) {
+      messages.push({
+        role: 'system',
+        content: systemPrompt
+      });
+    }
+    
+    messages.push({
+      role: 'user',
+      content: prompt
+    });
+
+    const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${DEEPSEEK_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: 'deepseek-chat',
+        messages: messages,
+        temperature: 0.7,
+        max_tokens: 4000,
+      }),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`DeepSeek API error: ${response.status} - ${errorText}`);
+    }
+
+    const data = await response.json();
+    
+    if (!data.choices || !data.choices[0] || !data.choices[0].message) {
+      throw new Error('No response from DeepSeek API');
+    }
+
+    return data.choices[0].message.content;
+  } catch (error) {
+    console.error('DeepSeek API error:', error);
+    throw new Error(`DeepSeek API error: ${error}`);
+  }
+}
+
+// Helper function to call Baidu Wenxin API (Fallback)
 async function callWenxinAPI(prompt: string, systemPrompt?: string) {
   const accessToken = await getWenxinAccessToken();
   
@@ -220,7 +282,7 @@ function isEnglishContent(text: string): boolean {
   return englishWordCount > words.length * 0.1; // If more than 10% are English words
 }
 
-// Generate storyboard using LLaVA
+// Generate storyboard using DeepSeek Chat (Primary) with fallback to Wenxin
 async function generateStoryboardText(request: StoryboardRequest, locale: string = 'en'): Promise<StoryboardFrame[]> {
   try {
     const prompt = request.projectType === 'kol' ? KOL_VIDEO_PROMPT : BUSINESS_TVC_PROMPT;
@@ -241,7 +303,15 @@ async function generateStoryboardText(request: StoryboardRequest, locale: string
       .replace('{tone}', request.tone)
       .replace('{duration}', request.duration);
 
-    const content = await callWenxinAPI(filledPrompt);
+    // Try DeepSeek first, fallback to Wenxin
+    let content: string;
+    try {
+      console.log('🎯 Using DeepSeek Chat for storyboard generation...');
+      content = await callDeepSeekAPI(filledPrompt);
+    } catch (deepseekError) {
+      console.log('⚠️ DeepSeek failed, trying Wenxin fallback...');
+      content = await callWenxinAPI(filledPrompt);
+    }
 
     // Extract JSON from the response - try multiple patterns
     let jsonContent = '';
@@ -313,7 +383,7 @@ async function generateStoryboardText(request: StoryboardRequest, locale: string
   }
 }
 
-// Generate enhanced image description using LLaVA
+// Generate enhanced image description using DeepSeek Chat (Primary) with fallback to Wenxin
 async function generateEnhancedImageDescription(prompt: string, locale: string = 'en'): Promise<string> {
   try {
     const language = locale === 'zh' ? 'Traditional Chinese' : 'English';
@@ -330,7 +400,14 @@ Focus on:
 
 Generate the prompt in ${language}. Keep it concise but detailed (around 50-80 words). Focus on the visual elements that will create the most impactful image. Ensure the content is professional and suitable for commercial advertising.`;
 
-    const content = await callWenxinAPI(enhancedPrompt);
+    // Try DeepSeek first, fallback to Wenxin
+    let content: string;
+    try {
+      content = await callDeepSeekAPI(enhancedPrompt);
+    } catch (deepseekError) {
+      content = await callWenxinAPI(enhancedPrompt);
+    }
+    
     const enhancedDescription = content?.trim() || prompt;
     
     return enhancedDescription;
@@ -349,11 +426,20 @@ async function translatePromptToEnglish(prompt: string): Promise<string> {
       return prompt;
     }
     
-    const content = await callWenxinAPI(`You are a professional translator. Translate the following Chinese text to English for image generation purposes. Keep the translation professional, accurate, and suitable for AI image generation. Only return the English translation, nothing else:
+    const translationPrompt = `You are a professional translator. Translate the following Chinese text to English for image generation purposes. Keep the translation professional, accurate, and suitable for AI image generation. Only return the English translation, nothing else:
 
 Chinese text: ${prompt}
 
-English translation:`);
+English translation:`;
+    
+    // Try DeepSeek first, fallback to Wenxin
+    let content: string;
+    try {
+      content = await callDeepSeekAPI(translationPrompt);
+    } catch (deepseekError) {
+      content = await callWenxinAPI(translationPrompt);
+    }
+    
     const translatedPrompt = content?.trim();
     
     if (translatedPrompt && translatedPrompt.length > 10 && !/[\u4e00-\u9fff]/.test(translatedPrompt)) {

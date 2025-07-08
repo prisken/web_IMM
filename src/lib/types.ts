@@ -159,4 +159,6 @@ export interface AnimationConfig {
   delay: number;
   easing: string;
   direction: 'up' | 'down' | 'left' | 'right';
-} 
+}
+
+ 

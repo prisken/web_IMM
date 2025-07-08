@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "dotenv": "^17.1.0",
     "next": "15.3.4",
     "next-intl": "^3.9.1",
     "ollama": "^0.5.16",
