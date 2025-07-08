@@ -18,11 +18,11 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   return {
-    title: "Creative Media Production House | Hong Kong",
-    description: "Professional media production services in Hong Kong. We create compelling TV commercials, KOL videos, and creative content that builds brands and engages audiences.",
+    title: "IMM Creative Media Production | Hong Kong",
+    description: "Professional media production services in Hong Kong. We create compelling TV commercials, KOL videos, and creative content that builds brands and engages audiences. AI-powered storyboard generation available.",
     openGraph: {
-      title: "Creative Media Production House | Hong Kong",
-      description: "Professional media production services in Hong Kong",
+      title: "IMM Creative Media Production | Hong Kong",
+      description: "Professional media production services in Hong Kong with AI-powered storyboard generation",
       locale: locale,
       type: 'website',
     },
