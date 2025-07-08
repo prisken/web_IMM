@@ -41,13 +41,39 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-// LLaVA API configuration
-const OLLAMA_BASE_URL = process.env.OLLAMA_BASE_URL || 'http://localhost:11434';
+// LLaVA API configuration for Ollama Cloud
+const OLLAMA_BASE_URL = process.env.OLLAMA_BASE_URL || 'https://api.ollama.ai';
+const OLLAMA_API_KEY = process.env.OLLAMA_API_KEY;
 const LLAVA_MODEL = process.env.LLAVA_MODEL || 'llava:latest';
 
 // Stable Diffusion API configuration
 const STABLE_DIFFUSION_API_URL = process.env.STABLE_DIFFUSION_API_URL || 'https://api.stability.ai/v1/generation/stable-diffusion-xl-1024-v1-0/text-to-image';
 const STABLE_DIFFUSION_API_KEY = process.env.STABLE_DIFFUSION_API_KEY;
+
+// Helper function to make Ollama API calls with authentication
+async function callOllamaAPI(endpoint: string, data: any) {
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+  };
+
+  // Add API key if available (for Ollama Cloud)
+  if (OLLAMA_API_KEY) {
+    headers['Authorization'] = `Bearer ${OLLAMA_API_KEY}`;
+  }
+
+  const response = await fetch(`${OLLAMA_BASE_URL}${endpoint}`, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Ollama API error: ${response.status} - ${errorText}`);
+  }
+
+  return response.json();
+}
 
 // Storyboard generation prompts optimized for LLaVA
 const BUSINESS_TVC_PROMPT = `You are a creative director at a media production house. Create a compelling TV commercial storyboard based on the following information:
@@ -141,28 +167,16 @@ ${text}
 
 Return only the translated text with the same JSON structure.`;
 
-    const response = await fetch(`${OLLAMA_BASE_URL}/api/generate`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
+    const data = await callOllamaAPI('/api/generate', {
+      model: LLAVA_MODEL,
+      prompt: translationPrompt,
+      stream: false,
+      options: {
+        temperature: 0.3,
+        top_p: 0.9,
+        max_tokens: 2000,
       },
-      body: JSON.stringify({
-        model: LLAVA_MODEL,
-        prompt: translationPrompt,
-        stream: false,
-        options: {
-          temperature: 0.3,
-          top_p: 0.9,
-          max_tokens: 2000,
-        },
-      }),
     });
-
-    if (!response.ok) {
-      throw new Error(`Translation API error: ${response.statusText}`);
-    }
-
-    const data = await response.json();
     return data.response.trim();
   } catch (error) {
     console.error('Error translating to Chinese:', error);
@@ -199,28 +213,16 @@ async function generateStoryboardText(request: StoryboardRequest, locale: string
       .replace('{tone}', request.tone)
       .replace('{duration}', request.duration);
 
-    const response = await fetch(`${OLLAMA_BASE_URL}/api/generate`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
+    const data = await callOllamaAPI('/api/generate', {
+      model: LLAVA_MODEL,
+      prompt: filledPrompt,
+      stream: false,
+      options: {
+        temperature: 0.7,
+        top_p: 0.9,
+        max_tokens: 2000,
       },
-      body: JSON.stringify({
-        model: LLAVA_MODEL,
-        prompt: filledPrompt,
-        stream: false,
-        options: {
-          temperature: 0.7,
-          top_p: 0.9,
-          max_tokens: 2000,
-        },
-      }),
     });
-
-    if (!response.ok) {
-      throw new Error(`LLaVA API error: ${response.statusText}`);
-    }
-
-    const data = await response.json();
     const content = data.response;
 
     // Extract JSON from the response - try multiple patterns
@@ -310,27 +312,15 @@ Focus on:
 
 Generate the prompt in ${language}. Keep it concise but detailed (around 50-80 words). Focus on the visual elements that will create the most impactful image. Ensure the content is professional and suitable for commercial advertising.`;
 
-    const response = await fetch(`${OLLAMA_BASE_URL}/api/generate`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        model: LLAVA_MODEL,
-        prompt: enhancedPrompt,
-        stream: false,
-        options: {
-          temperature: 0.7,
-          top_p: 0.9,
-        }
-      })
+    const data = await callOllamaAPI('/api/generate', {
+      model: LLAVA_MODEL,
+      prompt: enhancedPrompt,
+      stream: false,
+      options: {
+        temperature: 0.7,
+        top_p: 0.9,
+      }
     });
-
-    if (!response.ok) {
-      throw new Error(`LLaVA API error: ${response.status}`);
-    }
-
-    const data = await response.json();
     const enhancedDescription = data.response?.trim() || prompt;
     
     return enhancedDescription;
@@ -349,28 +339,15 @@ async function translatePromptToEnglish(prompt: string): Promise<string> {
       return prompt;
     }
     
-    const response = await fetch(`${OLLAMA_BASE_URL}/api/generate`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        model: LLAVA_MODEL,
-        prompt: `You are a professional translator. Translate the following Chinese text to English for image generation purposes. Keep the translation professional, accurate, and suitable for AI image generation. Only return the English translation, nothing else:
+    const data = await callOllamaAPI('/api/generate', {
+      model: LLAVA_MODEL,
+      prompt: `You are a professional translator. Translate the following Chinese text to English for image generation purposes. Keep the translation professional, accurate, and suitable for AI image generation. Only return the English translation, nothing else:
 
 Chinese text: ${prompt}
 
 English translation:`,
-        stream: false
-      })
+      stream: false
     });
-
-    if (!response.ok) {
-      console.warn('Translation failed, using original prompt');
-      return prompt;
-    }
-
-    const data = await response.json();
     const translatedPrompt = data.response?.trim();
     
     if (translatedPrompt && translatedPrompt.length > 10 && !/[\u4e00-\u9fff]/.test(translatedPrompt)) {

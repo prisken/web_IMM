@@ -22,9 +22,35 @@ interface TranslationRequest {
   targetLanguage: string;
 }
 
-// LLaVA API configuration
-const OLLAMA_BASE_URL = process.env.OLLAMA_BASE_URL || 'http://localhost:11434';
+// LLaVA API configuration for Ollama Cloud
+const OLLAMA_BASE_URL = process.env.OLLAMA_BASE_URL || 'https://api.ollama.ai';
+const OLLAMA_API_KEY = process.env.OLLAMA_API_KEY;
 const LLAVA_MODEL = process.env.LLAVA_MODEL || 'llava:latest';
+
+// Helper function to make Ollama API calls with authentication
+async function callOllamaAPI(endpoint: string, data: any) {
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+  };
+
+  // Add API key if available (for Ollama Cloud)
+  if (OLLAMA_API_KEY) {
+    headers['Authorization'] = `Bearer ${OLLAMA_API_KEY}`;
+  }
+
+  const response = await fetch(`${OLLAMA_BASE_URL}${endpoint}`, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Ollama API error: ${response.status} - ${errorText}`);
+  }
+
+  return response.json();
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -51,28 +77,17 @@ Frame ${frame.id}:
 
 Return the translated content in the same format, with only the text translated to Chinese.`;
 
-        const response = await fetch(`${OLLAMA_BASE_URL}/api/generate`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
+        const data = await callOllamaAPI('/api/generate', {
+          model: LLAVA_MODEL,
+          prompt: translationPrompt,
+          stream: false,
+          options: {
+            temperature: 0.3,
+            top_p: 0.9,
+            max_tokens: 500,
           },
-          body: JSON.stringify({
-            model: LLAVA_MODEL,
-            prompt: translationPrompt,
-            stream: false,
-            options: {
-              temperature: 0.3,
-              top_p: 0.9,
-              max_tokens: 500,
-            },
-          }),
         });
 
-        if (!response.ok) {
-          throw new Error(`Translation API error: ${response.statusText}`);
-        }
-
-        const data = await response.json();
         const translatedText = data.response.trim();
 
         // Extract translated content (simple parsing)
@@ -111,28 +126,18 @@ Summary: ${storyboard.summary}
 
 Return only the translated summary.`;
 
-    const summaryResponse = await fetch(`${OLLAMA_BASE_URL}/api/generate`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
+    const summaryData = await callOllamaAPI('/api/generate', {
+      model: LLAVA_MODEL,
+      prompt: summaryTranslationPrompt,
+      stream: false,
+      options: {
+        temperature: 0.3,
+        top_p: 0.9,
+        max_tokens: 200,
       },
-      body: JSON.stringify({
-        model: LLAVA_MODEL,
-        prompt: summaryTranslationPrompt,
-        stream: false,
-        options: {
-          temperature: 0.3,
-          top_p: 0.9,
-          max_tokens: 200,
-        },
-      }),
     });
 
-    let translatedSummary = storyboard.summary;
-    if (summaryResponse.ok) {
-      const summaryData = await summaryResponse.json();
-      translatedSummary = summaryData.response.trim();
-    }
+    const translatedSummary = summaryData.response.trim();
 
     const translatedStoryboard: GeneratedStoryboard = {
       frames: translatedFrames,
