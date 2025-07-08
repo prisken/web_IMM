@@ -45,36 +45,11 @@ const openai = new OpenAI({
 // DeepSeek Chat Configuration (Primary AI Service)
 const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY;
 
-// Baidu Wenxin API configuration (fallback)
-const WENXIN_API_KEY = process.env.WENXIN_API_KEY;
-const WENXIN_SECRET_KEY = process.env.WENXIN_SECRET_KEY;
-const WENXIN_MODEL = process.env.WENXIN_MODEL || 'ernie-bot-4';
-
 // Stable Diffusion API configuration
 const STABLE_DIFFUSION_API_URL = process.env.STABLE_DIFFUSION_API_URL || 'https://api.stability.ai/v1/generation/stable-diffusion-xl-1024-v1-0/text-to-image';
 const STABLE_DIFFUSION_API_KEY = process.env.STABLE_DIFFUSION_API_KEY;
 
-// Helper function to get Baidu Wenxin access token
-async function getWenxinAccessToken(): Promise<string> {
-  if (!WENXIN_API_KEY || !WENXIN_SECRET_KEY) {
-    throw new Error('Baidu Wenxin API key or secret key not configured');
-  }
 
-  const response = await fetch(`https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=${WENXIN_API_KEY}&client_secret=${WENXIN_SECRET_KEY}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    }
-  });
-
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`Baidu Wenxin token error: ${response.status} - ${errorText}`);
-  }
-
-  const data = await response.json();
-  return data.access_token;
-}
 
 // Helper function to call DeepSeek Chat API (Primary)
 async function callDeepSeekAPI(prompt: string, systemPrompt?: string) {
@@ -129,50 +104,7 @@ async function callDeepSeekAPI(prompt: string, systemPrompt?: string) {
   }
 }
 
-// Helper function to call Baidu Wenxin API (Fallback)
-async function callWenxinAPI(prompt: string, systemPrompt?: string) {
-  const accessToken = await getWenxinAccessToken();
-  
-  const messages = [];
-  
-  if (systemPrompt) {
-    messages.push({
-      role: 'system',
-      content: systemPrompt
-    });
-  }
-  
-  messages.push({
-    role: 'user',
-    content: prompt
-  });
 
-  const response = await fetch(`https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/${WENXIN_MODEL}?access_token=${accessToken}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      messages: messages,
-      temperature: 0.7,
-      top_p: 0.95,
-      max_output_tokens: 4000,
-    })
-  });
-
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`Baidu Wenxin API error: ${response.status} - ${errorText}`);
-  }
-
-  const data = await response.json();
-  
-  if (!data.result) {
-    throw new Error('No response from Baidu Wenxin API');
-  }
-
-  return data.result;
-}
 
 // Storyboard generation prompts optimized for LLaVA
 const BUSINESS_TVC_PROMPT = `You are a creative director at a media production house. Create a compelling TV commercial storyboard based on the following information:
@@ -303,15 +235,9 @@ async function generateStoryboardText(request: StoryboardRequest, locale: string
       .replace('{tone}', request.tone)
       .replace('{duration}', request.duration);
 
-    // Try DeepSeek first, fallback to Wenxin
-    let content: string;
-    try {
-      console.log('🎯 Using DeepSeek Chat for storyboard generation...');
-      content = await callDeepSeekAPI(filledPrompt);
-    } catch (deepseekError) {
-      console.log('⚠️ DeepSeek failed, trying Wenxin fallback...');
-      content = await callWenxinAPI(filledPrompt);
-    }
+    // Use DeepSeek Chat for storyboard generation
+    console.log('🎯 Using DeepSeek Chat for storyboard generation...');
+    const content = await callDeepSeekAPI(filledPrompt);
 
     // Extract JSON from the response - try multiple patterns
     let jsonContent = '';
@@ -400,13 +326,7 @@ Focus on:
 
 Generate the prompt in ${language}. Keep it concise but detailed (around 50-80 words). Focus on the visual elements that will create the most impactful image. Ensure the content is professional and suitable for commercial advertising.`;
 
-    // Try DeepSeek first, fallback to Wenxin
-    let content: string;
-    try {
-      content = await callDeepSeekAPI(enhancedPrompt);
-    } catch (deepseekError) {
-      content = await callWenxinAPI(enhancedPrompt);
-    }
+    const content = await callDeepSeekAPI(enhancedPrompt);
     
     const enhancedDescription = content?.trim() || prompt;
     
@@ -432,13 +352,7 @@ Chinese text: ${prompt}
 
 English translation:`;
     
-    // Try DeepSeek first, fallback to Wenxin
-    let content: string;
-    try {
-      content = await callDeepSeekAPI(translationPrompt);
-    } catch (deepseekError) {
-      content = await callWenxinAPI(translationPrompt);
-    }
+    const content = await callDeepSeekAPI(translationPrompt);
     
     const translatedPrompt = content?.trim();
     
