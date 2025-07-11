@@ -1,13 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import { Plus, Edit, Trash2 } from 'lucide-react';
+import { Plus, Edit, Trash2, RefreshCw } from 'lucide-react';
 import axios from 'axios';
 
 const BlogPosts = () => {
-  const { data: blogData, isLoading, refetch } = useQuery('blog-posts', async () => {
-    const response = await axios.get('/api/blog');
+  const { data: blogData, isLoading, refetch } = useQuery(['blog-posts', 'all'], async () => {
+    const response = await axios.get('/api/blog?status=all');
     return response.data;
+  }, {
+    refetchOnWindowFocus: false,
+    staleTime: 0, // Always consider data stale
+    cacheTime: 0, // Don't cache
   });
 
   const posts = blogData?.posts || [];
@@ -21,6 +25,10 @@ const BlogPosts = () => {
         console.error('Error deleting post:', error);
       }
     }
+  };
+
+  const handleRefresh = () => {
+    refetch();
   };
 
   if (isLoading) {
@@ -37,10 +45,17 @@ const BlogPosts = () => {
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Blog Posts</h1>
           <p className="mt-2 text-sm text-gray-700">
-            Manage your blog posts and content
+            Manage your blog posts and content ({posts.length} total posts)
           </p>
         </div>
-        <div className="mt-4 sm:mt-0">
+        <div className="mt-4 sm:mt-0 flex space-x-2">
+          <button
+            onClick={handleRefresh}
+            className="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+          >
+            <RefreshCw className="mr-2 h-4 w-4" />
+            Refresh
+          </button>
           <Link
             to="/blog/new"
             className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
@@ -73,7 +88,9 @@ const BlogPosts = () => {
                         <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                           post.status === 'published' 
                             ? 'bg-green-100 text-green-800' 
-                            : 'bg-yellow-100 text-yellow-800'
+                            : post.status === 'draft'
+                            ? 'bg-yellow-100 text-yellow-800'
+                            : 'bg-gray-100 text-gray-800'
                         }`}>
                           {post.status}
                         </span>

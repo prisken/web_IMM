@@ -366,4 +366,237 @@ router.delete('/backups/:filename', authenticateToken, requireAdmin, async (req,
   }
 });
 
+// ===== BLOG MANAGEMENT ROUTES =====
+
+// Get all blog posts for admin (with status filter)
+router.get('/blog-posts', authenticateToken, requireAdmin, async (req, res) => {
+  try {
+    const { 
+      status, 
+      page = 1, 
+      limit = 20, 
+      search, 
+      category, 
+      locale = 'en' 
+    } = req.query;
+
+    let query = db('blog_posts')
+      .select('*')
+      .where('locale', locale);
+
+    // Filter by status
+    if (status && status !== 'all') {
+      query = query.where('status', status);
+    }
+
+    // Filter by category
+    if (category) {
+      query = query.where('category', category);
+    }
+
+    // Search functionality
+    if (search) {
+      query = query.where(function() {
+        this.where('title', 'like', `%${search}%`)
+          .orWhere('excerpt', 'like', `%${search}%`)
+          .orWhere('content', 'like', `%${search}%`);
+      });
+    }
+
+    // Get total count for pagination
+    const countQuery = query.clone();
+    const total = await countQuery.count('* as count').first();
+
+    // Apply pagination and ordering
+    const posts = await query
+      .orderBy('created_at', 'desc')
+      .limit(limit)
+      .offset((page - 1) * limit);
+
+    // Parse tags JSON for each post
+    const postsWithParsedTags = posts.map(post => ({
+      ...post,
+      tags: post.tags ? JSON.parse(post.tags) : []
+    }));
+
+    res.json({
+      posts: postsWithParsedTags,
+      pagination: {
+        page: parseInt(page),
+        limit: parseInt(limit),
+        total: total.count,
+        pages: Math.ceil(total.count / limit)
+      }
+    });
+  } catch (error) {
+    console.error('Get admin blog posts error:', error);
+    res.status(500).json({ error: 'Failed to get blog posts' });
+  }
+});
+
+// Get draft and archived posts specifically
+router.get('/blog-posts/drafts', authenticateToken, requireAdmin, async (req, res) => {
+  try {
+    const { locale = 'en' } = req.query;
+
+    const draftPosts = await db('blog_posts')
+      .where('status', 'draft')
+      .where('locale', locale)
+      .orderBy('created_at', 'desc');
+
+    const archivedPosts = await db('blog_posts')
+      .where('status', 'archived')
+      .where('locale', locale)
+      .orderBy('created_at', 'desc');
+
+    // Parse tags JSON for each post
+    const parseTags = (posts) => posts.map(post => ({
+      ...post,
+      tags: post.tags ? JSON.parse(post.tags) : []
+    }));
+
+    res.json({
+      drafts: parseTags(draftPosts),
+      archived: parseTags(archivedPosts)
+    });
+  } catch (error) {
+    console.error('Get draft/archived posts error:', error);
+    res.status(500).json({ error: 'Failed to get draft and archived posts' });
+  }
+});
+
+// Get single blog post for editing
+router.get('/blog-posts/:id', authenticateToken, requireAdmin, async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const post = await db('blog_posts')
+      .where('id', id)
+      .first();
+
+    if (!post) {
+      return res.status(404).json({ error: 'Blog post not found' });
+    }
+
+    // Parse tags JSON
+    const postWithParsedTags = {
+      ...post,
+      tags: post.tags ? JSON.parse(post.tags) : []
+    };
+
+    res.json({ post: postWithParsedTags });
+  } catch (error) {
+    console.error('Get blog post for editing error:', error);
+    res.status(500).json({ error: 'Failed to get blog post' });
+  }
+});
+
+// Update blog post status (publish, archive, etc.)
+router.patch('/blog-posts/:id/status', authenticateToken, requireAdmin, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    if (!['draft', 'published', 'archived'].includes(status)) {
+      return res.status(400).json({ error: 'Invalid status' });
+    }
+
+    const post = await db('blog_posts').where('id', id).first();
+    if (!post) {
+      return res.status(404).json({ error: 'Blog post not found' });
+    }
+
+    const updateData = { status };
+    
+    // Set published_at if status changes to published
+    if (status === 'published' && post.status !== 'published') {
+      updateData.published_at = new Date();
+    }
+
+    await db('blog_posts')
+      .where('id', id)
+      .update(updateData);
+
+    const updatedPost = await db('blog_posts').where('id', id).first();
+
+    res.json({
+      message: `Blog post status updated to ${status}`,
+      post: updatedPost
+    });
+  } catch (error) {
+    console.error('Update blog post status error:', error);
+    res.status(500).json({ error: 'Failed to update blog post status' });
+  }
+});
+
+// Bulk update blog posts status
+router.patch('/blog-posts/bulk-status', authenticateToken, requireAdmin, async (req, res) => {
+  try {
+    const { postIds, status } = req.body;
+
+    if (!Array.isArray(postIds) || postIds.length === 0) {
+      return res.status(400).json({ error: 'Post IDs array is required' });
+    }
+
+    if (!['draft', 'published', 'archived'].includes(status)) {
+      return res.status(400).json({ error: 'Invalid status' });
+    }
+
+    const updateData = { status };
+    
+    // Set published_at if status changes to published
+    if (status === 'published') {
+      updateData.published_at = new Date();
+    }
+
+    await db('blog_posts')
+      .whereIn('id', postIds)
+      .update(updateData);
+
+    const updatedPosts = await db('blog_posts')
+      .whereIn('id', postIds)
+      .select('*');
+
+    res.json({
+      message: `Updated ${updatedPosts.length} blog posts to ${status}`,
+      posts: updatedPosts
+    });
+  } catch (error) {
+    console.error('Bulk update blog posts status error:', error);
+    res.status(500).json({ error: 'Failed to update blog posts status' });
+  }
+});
+
+// Get blog categories for admin
+router.get('/blog-categories', authenticateToken, requireAdmin, async (req, res) => {
+  try {
+    const { locale = 'en' } = req.query;
+    
+    const categories = await db('categories')
+      .where('locale', locale)
+      .orderBy('name');
+
+    res.json({ categories });
+  } catch (error) {
+    console.error('Get blog categories error:', error);
+    res.status(500).json({ error: 'Failed to get categories' });
+  }
+});
+
+// Get blog tags for admin
+router.get('/blog-tags', authenticateToken, requireAdmin, async (req, res) => {
+  try {
+    const { locale = 'en' } = req.query;
+    
+    const tags = await db('tags')
+      .where('locale', locale)
+      .orderBy('name');
+
+    res.json({ tags });
+  } catch (error) {
+    console.error('Get blog tags error:', error);
+    res.status(500).json({ error: 'Failed to get tags' });
+  }
+});
+
 module.exports = router; 

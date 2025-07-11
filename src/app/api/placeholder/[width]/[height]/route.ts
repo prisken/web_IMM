@@ -4,9 +4,9 @@ export const dynamic = 'force-static';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { width: string; height: string } }
+  { params }: { params: Promise<{ width: string; height: string }> }
 ) {
-  const { width, height } = params;
+  const { width, height } = await params;
   const searchParams = request.nextUrl.searchParams;
   const text = searchParams.get('text') || 'Placeholder';
   

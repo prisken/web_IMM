@@ -15,7 +15,7 @@ router.get('/', [
   query('tag').optional().trim(),
   query('search').optional().trim(),
   query('locale').optional().isIn(['en', 'zh']),
-  query('status').optional().isIn(['draft', 'published', 'archived'])
+  query('status').optional().isIn(['draft', 'published', 'archived', 'all'])
 ], async (req, res) => {
   try {
     const errors = validationResult(req);
@@ -39,7 +39,12 @@ router.get('/', [
 
     // Filter by status (only show published for public, all for authenticated)
     if (!req.user) {
-      query = query.where('status', 'published');
+      // For non-authenticated users, only show published unless explicitly requesting all
+      if (status === 'all') {
+        // Allow showing all posts if explicitly requested
+      } else {
+        query = query.where('status', 'published');
+      }
     } else if (status !== 'all') {
       query = query.where('status', status);
     }

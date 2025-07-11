@@ -27,7 +27,8 @@ export default function BlogClient({ locale }: { locale: string }) {
       setLoading(true);
       setError(null);
       
-      const apiUrl = `http://localhost:5001/api/blog?status=published`;
+      // Only fetch published posts for public blog page
+      const apiUrl = 'http://localhost:5001/api/blog?status=published';
       console.log('🔍 Fetching posts from:', apiUrl);
       
       const response = await fetch(apiUrl);
