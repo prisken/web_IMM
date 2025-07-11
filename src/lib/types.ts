@@ -54,6 +54,25 @@ export interface UserInfo {
   projectType: 'business-tvc' | 'kol-video';
 }
 
+// Blog Types
+export interface BlogPost {
+  id: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  author: string;
+  published_at: string;
+  category: string;
+  tags: string[];
+  read_time: number;
+  featured_image_url: string;
+  slug: string;
+  status: string;
+  seo_description?: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
 // Portfolio Types
 export interface PortfolioItem {
   id: string;

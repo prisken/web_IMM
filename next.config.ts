@@ -4,11 +4,11 @@ import createNextIntlPlugin from 'next-intl/plugin';
 const withNextIntl = createNextIntlPlugin();
 
 const nextConfig: NextConfig = {
-  // Removed static export for dynamic/SSR deployment
+  // Enable static export for backend serving
   // output: 'export',
   // Enable image optimization for Vercel/Node server
   images: {
-    unoptimized: false,
+    unoptimized: true, // Required for static export
   },
   // Disable trailing slash for cleaner URLs
   trailingSlash: false,

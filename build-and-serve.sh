@@ -2,7 +2,7 @@
 
 echo "🚀 Building and serving IMM Media Production website..."
 
-# Build the Next.js frontend
+# Build the Next.js frontend with static export
 echo "📦 Building Next.js frontend..."
 cd /Users/priskenlo/web_IMM
 npm run build

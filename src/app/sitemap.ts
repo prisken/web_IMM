@@ -1,6 +1,8 @@
 import { MetadataRoute } from 'next';
 import { locales } from '../i18n/request';
 
+export const dynamic = 'force-static';
+
 // Mock blog posts data - in a real app, this would come from a CMS or API
 const blogPosts = [
   'future-ai-media-production',

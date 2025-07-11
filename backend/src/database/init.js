@@ -47,7 +47,9 @@ async function initializeDatabase() {
         table.string('author').notNullable();
         table.string('category').notNullable();
         table.string('slug').unique().notNullable();
+        table.string('seo_title');
         table.text('seo_description');
+        table.string('seo_keywords');
         table.integer('read_time').defaultTo(5);
         table.json('tags'); // Array of strings
         table.string('featured_image_url');
@@ -165,6 +167,10 @@ async function initializeDatabase() {
         await db('tags').insert(tag);
       }
     }
+
+    // Populate sample blog posts
+    const { populateBlogData } = require('../utils/populateBlogData');
+    await populateBlogData();
 
     console.log('✅ Database tables created successfully');
   } catch (error) {
