@@ -24,7 +24,7 @@ const BlogPostForm = () => {
     ['post', id],
     async () => {
       if (isEditing) {
-        const response = await axios.get(`/api/blog/${id}`);
+        const response = await axios.get(`/api/blog/id/${id}`);
         return response.data;
       }
       return null;

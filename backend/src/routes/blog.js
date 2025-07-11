@@ -121,6 +121,26 @@ router.get('/tags', async (req, res) => {
   }
 });
 
+// Get single blog post by ID (for admin/edit)
+router.get('/id/:id', authenticateToken, async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const post = await db('blog_posts')
+      .where('id', id)
+      .first();
+
+    if (!post) {
+      return res.status(404).json({ error: 'Blog post not found' });
+    }
+
+    res.json({ post });
+  } catch (error) {
+    console.error('Get blog post by ID error:', error);
+    res.status(500).json({ error: 'Failed to get blog post' });
+  }
+});
+
 // Get single blog post (public)
 router.get('/:slug', async (req, res) => {
   try {
