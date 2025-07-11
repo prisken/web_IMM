@@ -73,24 +73,41 @@ app.get('/admin/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
-// Serve blog frontend (redirect to admin for now)
-app.get('/blog', (req, res) => {
-  res.redirect('/admin');
-});
-
-app.get('/blog/*', (req, res) => {
-  res.redirect('/admin');
-});
-
-// Handle client-side routing for all other routes
-app.get('*', (req, res) => {
-  // Only serve React app for non-API routes
-  if (!req.path.startsWith('/api/')) {
-    res.sendFile(path.join(__dirname, '../client/build/index.html'));
-  } else {
-    res.status(404).json({ error: 'Route not found' });
-  }
-});
+// Serve main website static files (if built)
+const mainWebsitePath = path.join(__dirname, '../../out');
+if (require('fs').existsSync(mainWebsitePath)) {
+  app.use(express.static(mainWebsitePath));
+  
+  // Handle client-side routing for main website
+  app.get('*', (req, res, next) => {
+    // Skip API routes and admin routes
+    if (req.path.startsWith('/api/') || req.path.startsWith('/admin/')) {
+      return next();
+    }
+    
+    // Try to serve static file first
+    const filePath = path.join(mainWebsitePath, req.path);
+    if (require('fs').existsSync(filePath) && require('fs').statSync(filePath).isFile()) {
+      return res.sendFile(filePath);
+    }
+    
+    // Fallback to index.html for client-side routing
+    res.sendFile(path.join(mainWebsitePath, 'index.html'));
+  });
+} else {
+  // If main website is not built, redirect to admin
+  app.get('/', (req, res) => {
+    res.redirect('/admin');
+  });
+  
+  app.get('*', (req, res) => {
+    if (!req.path.startsWith('/api/') && !req.path.startsWith('/admin/')) {
+      res.redirect('/admin');
+    } else {
+      res.status(404).json({ error: 'Route not found' });
+    }
+  });
+}
 
 // Error handling middleware
 app.use((err, req, res, next) => {
@@ -101,8 +118,6 @@ app.use((err, req, res, next) => {
   });
 });
 
-
-
 // Initialize database and start server
 async function startServer() {
   try {
@@ -110,8 +125,9 @@ async function startServer() {
     console.log('✅ Database initialized successfully');
     
     app.listen(PORT, () => {
-      console.log(`🚀 IMM Blog CRM Server running on port ${PORT}`);
+      console.log(`🚀 IMM Media Production Server running on port ${PORT}`);
       console.log(`📊 Admin Panel: http://localhost:${PORT}/admin`);
+      console.log(`🌐 Main Website: http://localhost:${PORT}`);
       console.log(`🔗 API Base: http://localhost:${PORT}/api`);
       console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
     });

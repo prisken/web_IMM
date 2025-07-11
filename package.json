@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:full": "./dev.sh",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "serve": "./build-and-serve.sh"
   },
   "dependencies": {
     "dotenv": "^17.1.0",
