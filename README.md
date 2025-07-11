@@ -1,163 +1,189 @@
-# IMM Media - Creative Media Production House
+# IMM Media Production House Website
 
-A modern, bilingual (English/Chinese) website for IMM Media, a Hong Kong-based creative media production company specializing in TV commercials, KOL content, and digital media solutions.
+A professional website for IMM Media Production House featuring a modern frontend built with Next.js and a comprehensive backend CRM system for content management.
 
 ## 🚀 Features
 
-- **Bilingual Support**: Full English and Chinese localization
-- **Modern Design**: Responsive design with Tailwind CSS
-- **AI Integration**: AI-powered storyboard generator
-- **Professional Portfolio**: Showcase of creative work
-- **Contact Forms**: Lead generation and client communication
-- **SEO Optimized**: Proper metadata and structured content
+### Frontend (Next.js)
+- **Multi-language Support**: English and Chinese (Traditional)
+- **Responsive Design**: Mobile-first approach with Tailwind CSS
+- **SEO Optimized**: Meta tags, structured data, and sitemap
+- **Blog System**: Dynamic blog posts with categories and tags
+- **AI Storyboard Generator**: Interactive AI-powered storyboard creation
+- **Portfolio Showcase**: Professional portfolio display
+- **Contact Forms**: Lead generation and contact management
 
-## 🛠️ Tech Stack
-
-- **Framework**: Next.js 15 with App Router
-- **Styling**: Tailwind CSS
-- **Internationalization**: next-intl
-- **Language**: TypeScript
-- **Deployment**: Vercel-ready
+### Backend CRM (Node.js + Express)
+- **Authentication System**: JWT-based authentication with role-based access
+- **Content Management**: Blog post creation, editing, and publishing
+- **Media Management**: File upload and management system
+- **User Management**: Admin user management with roles
+- **API Endpoints**: RESTful API for frontend integration
+- **Database**: SQLite with Knex.js ORM
 
 ## 📁 Project Structure
 
 ```
 web_IMM/
-├── src/
-│   ├── app/
-│   │   ├── [locale]/           # Localized routes
-│   │   │   ├── page.tsx        # Homepage
-│   │   │   ├── layout.tsx      # Root layout
+├── src/                          # Next.js frontend source
+│   ├── app/                     # App router pages
+│   │   ├── [locale]/           # Internationalized routes
 │   │   │   ├── about/          # About page
+│   │   │   ├── ai-generator/   # AI storyboard generator
+│   │   │   ├── blog/           # Blog listing and detail pages
 │   │   │   ├── contact/        # Contact page
-│   │   │   ├── services/       # Services page
 │   │   │   ├── portfolio/      # Portfolio page
-│   │   │   └── ai-generator/   # AI tool page
-│   │   └── globals.css         # Global styles
-│   ├── components/
-│   │   ├── layout/
-│   │   │   ├── Header.tsx      # Navigation header
-│   │   │   └── Footer.tsx      # Site footer
-│   │   └── LanguageSwitcher.tsx # Language toggle
-│   ├── i18n/
-│   │   └── request.ts          # i18n configuration
-│   └── lib/
-│       ├── ai.ts               # AI integration
-│       ├── types.ts            # TypeScript types
-│       └── utils.ts            # Utility functions
-├── messages/
+│   │   │   └── services/       # Services page
+│   │   └── api/                # API routes
+│   ├── components/              # Reusable React components
+│   └── lib/                     # Utility functions and configurations
+├── backend/                     # Backend CRM system
+│   ├── src/
+│   │   ├── routes/             # API route handlers
+│   │   ├── middleware/         # Express middleware
+│   │   ├── database/           # Database setup and migrations
+│   │   └── server.js           # Main server file
+│   └── client/                 # React admin panel
+│       ├── src/
+│       │   ├── components/     # Admin components
+│       │   └── pages/          # Admin pages
+│       └── public/             # Static assets
+├── messages/                    # Internationalization files
 │   ├── en.json                 # English translations
 │   └── zh.json                 # Chinese translations
-├── public/                     # Static assets
-└── middleware.ts               # i18n middleware
+└── public/                     # Static assets
 ```
 
-## 🚀 Getting Started
+## 🛠️ Technology Stack
+
+### Frontend
+- **Next.js 15**: React framework with App Router
+- **TypeScript**: Type-safe development
+- **Tailwind CSS**: Utility-first CSS framework
+- **next-intl**: Internationalization
+- **React Hook Form**: Form handling
+- **Axios**: HTTP client
+
+### Backend
+- **Node.js**: JavaScript runtime
+- **Express.js**: Web framework
+- **SQLite**: Database
+- **Knex.js**: SQL query builder
+- **JWT**: Authentication
+- **Multer**: File upload handling
+- **CORS**: Cross-origin resource sharing
+
+## 🚀 Quick Start
 
 ### Prerequisites
-
 - Node.js 18+ 
 - npm or yarn
 
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd web_IMM
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Run the development server**
-   ```bash
-   npm run dev
-   ```
-
-4. **Open your browser**
-   - English: http://localhost:3000/en
-   - Chinese: http://localhost:3000/zh
-
-## 🌐 Internationalization
-
-The website supports English and Chinese languages with automatic locale detection and URL-based routing.
-
-### Adding New Translations
-
-1. Add new keys to `messages/en.json`
-2. Add corresponding translations to `messages/zh.json`
-3. Use the translation hook in your components:
-
-```typescript
-import { getTranslations } from 'next-intl/server';
-
-const t = await getTranslations({ locale, namespace: 'hero' });
-```
-
-## 🎨 Customization
-
-### Colors and Styling
-
-- Edit `tailwind.config.ts` for theme customization
-- Modify `src/app/globals.css` for global styles
-- Component-specific styles use Tailwind utility classes
-
-### Content Management
-
-- Update translation files in `messages/` for text content
-- Modify page components in `src/app/[locale]/` for layout changes
-- Update navigation in `src/components/layout/Header.tsx`
-
-## 📱 Responsive Design
-
-The website is fully responsive and optimized for:
-- Desktop (1024px+)
-- Tablet (768px - 1023px)
-- Mobile (320px - 767px)
-
-## 🔧 Development Scripts
-
+### Frontend Setup
 ```bash
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run start        # Start production server
-npm run lint         # Run ESLint
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
 ```
 
-## 🚀 Deployment
+### Backend Setup
+```bash
+# Navigate to backend directory
+cd backend
 
-### Vercel (Recommended)
+# Install dependencies
+npm install
 
-1. Connect your repository to Vercel
-2. Configure environment variables if needed
-3. Deploy automatically on push to main branch
+# Start development server
+npm run dev
 
-### Manual Deployment
+# Or start production server
+node src/server.js
+```
 
-1. Build the project: `npm run build`
-2. Start production server: `npm run start`
+### Admin Panel
+The admin panel is served at `http://localhost:5001/admin`
+
+**Default Admin Credentials:**
+- Email: `admin@immmedia.hk`
+- Password: `admin123`
+
+## 📊 API Endpoints
+
+### Authentication
+- `POST /api/auth/login` - User login
+- `POST /api/auth/register` - User registration
+- `GET /api/auth/me` - Get current user
+
+### Blog Posts
+- `GET /api/blog` - Get all blog posts
+- `POST /api/blog` - Create new blog post
+- `GET /api/blog/:id` - Get specific blog post
+- `PUT /api/blog/:id` - Update blog post
+- `DELETE /api/blog/:id` - Delete blog post
+
+### Media Management
+- `GET /api/media` - Get all media files
+- `POST /api/media` - Upload media file
+- `DELETE /api/media/:id` - Delete media file
+
+### Admin
+- `GET /api/admin/stats` - Get dashboard statistics
+- `GET /api/admin/users` - Get all users
+- `POST /api/admin/import-data` - Import mock data
+
+## 🌐 Environment Variables
+
+### Frontend (.env.local)
+```env
+NEXT_PUBLIC_API_URL=http://localhost:5001/api
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+```
+
+### Backend (.env)
+```env
+PORT=5001
+JWT_SECRET=your-secret-key
+NODE_ENV=development
+```
+
+## 🔧 Development
+
+### Code Style
+- Use TypeScript for type safety
+- Follow ESLint and Prettier configurations
+- Use conventional commit messages
+
+### Database
+The backend uses SQLite for simplicity. For production, consider using PostgreSQL or MySQL.
+
+### File Uploads
+Media files are stored in the `backend/uploads/` directory. Ensure proper permissions and consider using cloud storage for production.
+
+## 📝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
 
 ## 📄 License
 
-This project is private and proprietary to IMM Media.
+This project is proprietary software for IMM Media Production House.
 
-## 🤝 Contributing
+## 🤝 Support
 
-For internal development:
-1. Create a feature branch
-2. Make your changes
-3. Test thoroughly
-4. Submit a pull request
-
-## 📞 Support
-
-For technical support or questions:
-- Email: hello@immmedia.hk
-- Phone: +852 1234 5678
+For support or questions, please contact the development team.
 
 ---
 
-Built with ❤️ by IMM Media Team
+**Built with ❤️ for IMM Media Production House**

@@ -3,6 +3,7 @@
     "home": "首頁",
     "services": "服務",
     "portfolio": "作品集",
+    "blog": "部落格",
     "about": "關於我們",
     "aiGenerator": "AI生成器",
     "contact": "聯絡我們",
@@ -539,5 +540,64 @@
     },
     "generating": "正在生成您的故事板...",
     "success": "您的故事板已準備就緒！"
+  },
+  "blog": {
+    "meta": {
+      "title": "部落格與洞察",
+      "description": "發現媒體製作的最新趨勢、創意洞察和行業知識，來自香港領先的媒體製作公司。",
+      "keywords": "媒體製作部落格, 創意洞察, 香港媒體, 電視廣告, KOL營銷, 數位營銷趨勢"
+    },
+    "hero": {
+      "title": "部落格與洞察",
+      "description": "發現媒體製作的最新趨勢、創意洞察和行業知識"
+    },
+    "search": {
+      "placeholder": "搜尋文章..."
+    },
+    "filters": {
+      "categories": "分類",
+      "tags": "標籤",
+      "allTags": "所有標籤"
+    },
+    "readTime": "分鐘閱讀",
+    "readMore": "閱讀更多",
+    "noResults": {
+      "title": "沒有找到文章",
+      "description": "請嘗試調整搜尋詞或篩選條件來找到您要找的內容。"
+    },
+    "newsletter": {
+      "title": "保持更新",
+      "description": "獲取最新的創意洞察和行業趨勢，直接發送到您的收件箱。",
+      "placeholder": "輸入您的電子郵件地址",
+      "subscribe": "訂閱"
+    },
+    "backToBlog": "返回部落格",
+    "share": "分享",
+    "copyLink": "複製連結",
+    "tags": "標籤",
+    "author": {
+      "description": "擁有多年媒體製作和數位營銷經驗的創意專業人士。"
+    },
+    "relatedPosts": {
+      "title": "相關文章",
+      "post1": {
+        "title": "視頻講故事的藝術",
+        "excerpt": "學習如何製作引人入勝的敘事，吸引和激勵您的受眾。"
+      },
+      "post2": {
+        "title": "社交媒體營銷策略",
+        "excerpt": "發現建立品牌在社交媒體平台存在感的有效策略。"
+      },
+      "post3": {
+        "title": "內容營銷最佳實踐",
+        "excerpt": "探索創建驅動參與度和轉換的內容的經過驗證的技術。"
+      }
+    },
+    "cta": {
+      "title": "準備好創造令人驚嘆的作品了嗎？",
+      "description": "讓我們討論您的項目，將您的創意願景變為現實。",
+      "getStarted": "開始",
+      "viewWork": "查看我們的作品"
+    }
   }
 } 

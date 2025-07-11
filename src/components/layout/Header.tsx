@@ -18,6 +18,7 @@ export default function Header() {
     { name: t('home'), href: `/${locale}` },
     { name: t('services'), href: `/${locale}/services` },
     { name: t('portfolio'), href: `/${locale}/portfolio` },
+    { name: t('blog'), href: `/${locale}/blog` },
     { name: t('aiGenerator'), href: `/${locale}/ai-generator` },
     { name: t('about'), href: `/${locale}/about` },
     { name: t('contact'), href: `/${locale}/contact` },

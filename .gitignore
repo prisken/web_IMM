@@ -58,3 +58,43 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.temp
+
+# Backend specific
+backend/node_modules/
+backend/uploads/
+backend/database.sqlite
+backend/database.sqlite-journal
+backend/.env
+backend/logs/
+backend/client/node_modules/
+backend/client/build/
+backend/client/.env
+
+# Database files
+*.sqlite
+*.sqlite3
+*.db
+
+# Upload directories
+uploads/
+media/
+
+# Log files
+*.log
+logs/
+
+# Environment files
+.env
+.env.local
+.env.production
+.env.development
+
+# Build artifacts
+dist/
+build/
+.next/
+out/
+
+# Cache directories
+.cache/
+.parcel-cache/

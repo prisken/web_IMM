@@ -3,6 +3,7 @@
     "home": "Home",
     "services": "Services",
     "portfolio": "Portfolio",
+    "blog": "Blog",
     "about": "About",
     "aiGenerator": "AI Generator",
     "contact": "Contact",
@@ -539,5 +540,64 @@
     },
     "generating": "Generating your storyboard...",
     "success": "Your storyboard is ready!"
+  },
+  "blog": {
+    "meta": {
+      "title": "Blog & Insights",
+      "description": "Discover the latest trends in media production, creative insights, and industry knowledge from Hong Kong's leading media production company.",
+      "keywords": "media production blog, creative insights, Hong Kong media, TV commercials, KOL marketing, digital marketing trends"
+    },
+    "hero": {
+      "title": "Blog & Insights",
+      "description": "Discover the latest trends in media production, creative insights, and industry knowledge"
+    },
+    "search": {
+      "placeholder": "Search articles..."
+    },
+    "filters": {
+      "categories": "Categories",
+      "tags": "Tags",
+      "allTags": "All Tags"
+    },
+    "readTime": "min read",
+    "readMore": "Read More",
+    "noResults": {
+      "title": "No articles found",
+      "description": "Try adjusting your search terms or filters to find what you're looking for."
+    },
+    "newsletter": {
+      "title": "Stay Updated",
+      "description": "Get the latest creative insights and industry trends delivered to your inbox.",
+      "placeholder": "Enter your email address",
+      "subscribe": "Subscribe"
+    },
+    "backToBlog": "Back to Blog",
+    "share": "Share",
+    "copyLink": "Copy Link",
+    "tags": "Tags",
+    "author": {
+      "description": "Creative professional with years of experience in media production and digital marketing."
+    },
+    "relatedPosts": {
+      "title": "Related Articles",
+      "post1": {
+        "title": "The Art of Video Storytelling",
+        "excerpt": "Learn how to craft compelling narratives that engage and inspire your audience."
+      },
+      "post2": {
+        "title": "Social Media Marketing Strategies",
+        "excerpt": "Discover effective strategies for building your brand presence on social media platforms."
+      },
+      "post3": {
+        "title": "Content Marketing Best Practices",
+        "excerpt": "Explore proven techniques for creating content that drives engagement and conversions."
+      }
+    },
+    "cta": {
+      "title": "Ready to Create Something Amazing?",
+      "description": "Let's discuss your project and bring your creative vision to life.",
+      "getStarted": "Get Started",
+      "viewWork": "View Our Work"
+    }
   }
 } 
