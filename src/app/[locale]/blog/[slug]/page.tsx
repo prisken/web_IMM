@@ -22,7 +22,7 @@ interface BlogPost {
 
 async function getBlogPost(slug: string, locale: string): Promise<BlogPost | null> {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blog/slug/${slug}?locale=${locale}`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blog/slug/${slug}?locale=${locale}`, {
       cache: 'no-store'
     });
     

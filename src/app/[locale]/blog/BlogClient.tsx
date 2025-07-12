@@ -28,7 +28,7 @@ export default function BlogClient({ locale }: { locale: string }) {
       setError(null);
       
       // Only fetch published posts for public blog page
-      const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/blog?status=published`;
+      const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/blog?status=published`;
       console.log('🔍 Fetching posts from:', apiUrl);
       
       const response = await fetch(apiUrl);
