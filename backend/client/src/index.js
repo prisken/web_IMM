@@ -8,6 +8,9 @@ import './index.css';
 import App from './App';
 import { AuthProvider } from './hooks/useAuth';
 
+// Set axios baseURL to backend API URL from env or fallback
+axios.defaults.baseURL = process.env.REACT_APP_API_URL || 'https://webimm-production.up.railway.app';
+
 // Add axios interceptor for authentication
 axios.interceptors.request.use(
   (config) => {
