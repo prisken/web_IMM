@@ -30,7 +30,7 @@ export default function AdminPage() {
   const fetchPosts = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5001/api/blog');
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blog`);
       const data = await response.json();
       setPosts(data.posts || []);
     } catch (err) {
@@ -43,7 +43,7 @@ export default function AdminPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5001/api/blog', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blog`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
