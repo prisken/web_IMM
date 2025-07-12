@@ -10,7 +10,7 @@
     "build:client": "cd client && npm run build",
     "install:all": "npm install && cd client && npm install",
     "setup": "node scripts/setup.js",
-    "postinstall": "cd client && npm install && npm run build"
+    "postinstall": "cd client && npm install --omit=dev && npm run build"
   },
   "keywords": ["crm", "blog", "content-management", "media-production"],
   "author": "IMM Media",
