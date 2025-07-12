@@ -31,6 +31,32 @@ interface AIGeneratorClientProps {
 export default function AIGeneratorClient({ translations, locale }: AIGeneratorClientProps) {
   const t = translations;
   
+  // Debug logging to help identify translation issues
+  console.log('Translation object loaded:', {
+    hasForm: !!t?.form,
+    hasTone: !!t?.form?.tone,
+    hasDuration: !!t?.form?.duration,
+    hasBudget: !!t?.form?.budget,
+    hasImageAspectRatio: !!t?.form?.imageAspectRatio,
+    locale
+  });
+
+  // Fallback function for translation keys
+  const getTranslation = (path: string, fallback: string = '') => {
+    try {
+      const keys = path.split('.');
+      let value = t;
+      for (const key of keys) {
+        value = value?.[key];
+        if (value === undefined) break;
+      }
+      return value || fallback;
+    } catch (error) {
+      console.error(`Translation error for path "${path}":`, error);
+      return fallback;
+    }
+  };
+
   const [currentStep, setCurrentStep] = useState(1);
   const [outputLanguage, setOutputLanguage] = useState<'en' | 'zh'>(locale as 'en' | 'zh');
   const [formData, setFormData] = useState({
@@ -703,7 +729,7 @@ export default function AIGeneratorClient({ translations, locale }: AIGeneratorC
               
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t.form.tone.label}
+                  {getTranslation('form.tone.label', 'Tone & Style')}
                 </label>
                 <select
                   value={formData.tone}
@@ -712,12 +738,12 @@ export default function AIGeneratorClient({ translations, locale }: AIGeneratorC
                     getFieldError('tone') ? 'border-red-500' : 'border-gray-300'
                   }`}
                 >
-                  <option value="">{t.form.tone.placeholder}</option>
-                  <option value="professional">{t.form.tone.options.professional}</option>
-                  <option value="casual">{t.form.tone.options.casual}</option>
-                  <option value="luxury">{t.form.tone.options.luxury}</option>
-                  <option value="energetic">{t.form.tone.options.energetic}</option>
-                  <option value="emotional">{t.form.tone.options.emotional}</option>
+                  <option value="">{getTranslation('form.tone.placeholder', 'Select tone')}</option>
+                  <option value="professional">{getTranslation('form.tone.options.professional', 'Professional')}</option>
+                  <option value="casual">{getTranslation('form.tone.options.casual', 'Casual')}</option>
+                  <option value="luxury">{getTranslation('form.tone.options.luxury', 'Luxury')}</option>
+                  <option value="energetic">{getTranslation('form.tone.options.energetic', 'Energetic')}</option>
+                  <option value="emotional">{getTranslation('form.tone.options.emotional', 'Emotional')}</option>
                 </select>
                 {getFieldError('tone') && (
                   <p className="text-red-500 text-sm mt-1">{getFieldError('tone')}</p>
@@ -726,7 +752,7 @@ export default function AIGeneratorClient({ translations, locale }: AIGeneratorC
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t.form.duration.label}
+                  {getTranslation('form.duration.label', 'Duration')}
                 </label>
                 <select
                   value={formData.duration}
@@ -735,12 +761,12 @@ export default function AIGeneratorClient({ translations, locale }: AIGeneratorC
                     getFieldError('duration') ? 'border-red-500' : 'border-gray-300'
                   }`}
                 >
-                  <option value="">{t.form.duration.placeholder}</option>
-                  <option value="15s">{t.form.duration.options['15s']}</option>
-                  <option value="30s">{t.form.duration.options['30s']}</option>
-                  <option value="60s">{t.form.duration.options['60s']}</option>
-                  <option value="90s">{t.form.duration.options['90s']}</option>
-                  <option value="120s">{t.form.duration.options['120s']}</option>
+                  <option value="">{getTranslation('form.duration.placeholder', 'Select duration')}</option>
+                  <option value="15s">{getTranslation('form.duration.options.15s', '15 seconds')}</option>
+                  <option value="30s">{getTranslation('form.duration.options.30s', '30 seconds')}</option>
+                  <option value="60s">{getTranslation('form.duration.options.60s', '60 seconds')}</option>
+                  <option value="90s">{getTranslation('form.duration.options.90s', '90 seconds')}</option>
+                  <option value="120s">{getTranslation('form.duration.options.120s', '120 seconds')}</option>
                 </select>
                 {getFieldError('duration') && (
                   <p className="text-red-500 text-sm mt-1">{getFieldError('duration')}</p>
@@ -755,33 +781,33 @@ export default function AIGeneratorClient({ translations, locale }: AIGeneratorC
               
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t.form.budget.label}
+                  {getTranslation('form.budget.label', 'Budget Range')}
                 </label>
                 <select
                   value={formData.budget}
                   onChange={(e) => handleInputChange('budget', e.target.value)}
                   className="w-full px-3 sm:px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 text-base"
                 >
-                  <option value="">{t.form.budget.placeholder}</option>
-                  <option value="low">{t.form.budget.options.low}</option>
-                  <option value="medium">{t.form.budget.options.medium}</option>
-                  <option value="high">{t.form.budget.options.high}</option>
-                  <option value="premium">{t.form.budget.options.premium}</option>
+                  <option value="">{getTranslation('form.budget.placeholder', 'Select budget range')}</option>
+                  <option value="low">{getTranslation('form.budget.options.low', 'Under $10,000')}</option>
+                  <option value="medium">{getTranslation('form.budget.options.medium', '$10,000 - $50,000')}</option>
+                  <option value="high">{getTranslation('form.budget.options.high', '$50,000 - $100,000')}</option>
+                  <option value="premium">{getTranslation('form.budget.options.premium', 'Over $100,000')}</option>
                 </select>
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t.form.imageAspectRatio.label}
+                  {getTranslation('form.imageAspectRatio.label', 'Image Aspect Ratio')}
                 </label>
                 <select
                   value={formData.imageAspectRatio}
                   onChange={(e) => handleInputChange('imageAspectRatio', e.target.value)}
                   className="w-full px-3 sm:px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 text-base"
                 >
-                  <option value="1024x1024">{t.form.imageAspectRatio.options['1024x1024']}</option>
-                  <option value="1024x1792">{t.form.imageAspectRatio.options['1024x1792']}</option>
-                  <option value="1792x1024">{t.form.imageAspectRatio.options['1792x1024']}</option>
+                  <option value="1024x1024">{getTranslation('form.imageAspectRatio.options.1024x1024', 'Square (1:1)')}</option>
+                  <option value="1024x1792">{getTranslation('form.imageAspectRatio.options.1024x1792', 'Portrait (9:16)')}</option>
+                  <option value="1792x1024">{getTranslation('form.imageAspectRatio.options.1792x1024', 'Landscape (16:9)')}</option>
                 </select>
               </div>
             </div>
