@@ -72,8 +72,15 @@ async function translateToEnglish(text) {
 async function callStableDiffusion(prompt, aspectRatio = '1024x1024') {
   if (!STABLE_DIFFUSION_API_KEY) throw new Error('Stable Diffusion API key not configured');
   
-  // Parse aspect ratio to get width and height
-  const [width, height] = aspectRatio.split('x').map(Number);
+  // Map user-selected aspect ratios to supported Stable Diffusion dimensions
+  const dimensionMap = {
+    '1024x1024': { width: 1024, height: 1024 }, // Square
+    '1024x1792': { width: 768, height: 1344 },  // Portrait (closest to 9:16)
+    '1792x1024': { width: 1344, height: 768 }   // Landscape (closest to 16:9)
+  };
+  
+  // Get the mapped dimensions or default to square
+  const dimensions = dimensionMap[aspectRatio] || dimensionMap['1024x1024'];
   
   const response = await fetch(STABLE_DIFFUSION_API_URL, {
     method: 'POST',
@@ -84,8 +91,8 @@ async function callStableDiffusion(prompt, aspectRatio = '1024x1024') {
     body: JSON.stringify({
       text_prompts: [{ text: prompt }],
       cfg_scale: 7,
-      height: height,
-      width: width,
+      height: dimensions.height,
+      width: dimensions.width,
       samples: 1,
       steps: 30
     })
