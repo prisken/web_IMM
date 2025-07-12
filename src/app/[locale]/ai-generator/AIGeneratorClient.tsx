@@ -46,6 +46,7 @@ export default function AIGeneratorClient({ translations, locale }: AIGeneratorC
     tone: '',
     duration: '',
     budget: '',
+    imageAspectRatio: '1024x1024', // Default to square
     contactInfo: {
       name: '',
       email: '',
@@ -768,6 +769,21 @@ export default function AIGeneratorClient({ translations, locale }: AIGeneratorC
                   <option value="premium">{t.form.budget.options.premium}</option>
                 </select>
               </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  {t.form.imageAspectRatio.label}
+                </label>
+                <select
+                  value={formData.imageAspectRatio}
+                  onChange={(e) => handleInputChange('imageAspectRatio', e.target.value)}
+                  className="w-full px-3 sm:px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 text-base"
+                >
+                  <option value="1024x1024">{t.form.imageAspectRatio.options['1024x1024']}</option>
+                  <option value="1024x1792">{t.form.imageAspectRatio.options['1024x1792']}</option>
+                  <option value="1792x1024">{t.form.imageAspectRatio.options['1792x1024']}</option>
+                </select>
+              </div>
             </div>
           )}
 
@@ -970,6 +986,7 @@ export default function AIGeneratorClient({ translations, locale }: AIGeneratorC
                       tone: '',
                       duration: '',
                       budget: '',
+                      imageAspectRatio: '1024x1024', // Default to square
                       contactInfo: {
                         name: '',
                         email: '',

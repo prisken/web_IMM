@@ -69,8 +69,12 @@ async function translateToEnglish(text) {
 }
 
 // Helper function to call Stable Diffusion API
-async function callStableDiffusion(prompt) {
+async function callStableDiffusion(prompt, aspectRatio = '1024x1024') {
   if (!STABLE_DIFFUSION_API_KEY) throw new Error('Stable Diffusion API key not configured');
+  
+  // Parse aspect ratio to get width and height
+  const [width, height] = aspectRatio.split('x').map(Number);
+  
   const response = await fetch(STABLE_DIFFUSION_API_URL, {
     method: 'POST',
     headers: {
@@ -80,8 +84,8 @@ async function callStableDiffusion(prompt) {
     body: JSON.stringify({
       text_prompts: [{ text: prompt }],
       cfg_scale: 7,
-      height: 512,
-      width: 768,
+      height: height,
+      width: width,
       samples: 1,
       steps: 30
     })
@@ -321,7 +325,7 @@ function calculateBudgetEstimate(budget, totalDuration, projectType) {
 // Stream storyboard generation endpoint
 router.post('/generate-storyboard-stream', async (req, res) => {
   try {
-    const { projectType, industry, targetAudience, brandName, productDescription, keyMessage, tone, duration, budget, contactInfo, outputLanguage } = req.body;
+    const { projectType, industry, targetAudience, brandName, productDescription, keyMessage, tone, duration, budget, imageAspectRatio, contactInfo, outputLanguage } = req.body;
     const locale = req.headers['x-locale'] || 'en';
 
     // Set headers for streaming
@@ -378,7 +382,7 @@ router.post('/generate-storyboard-stream', async (req, res) => {
         prompt = await translateToEnglish(prompt);
       }
       try {
-        const imageUrl = await callStableDiffusion(prompt);
+        const imageUrl = await callStableDiffusion(prompt, imageAspectRatio || '1024x1024');
         frames[i].image = imageUrl;
       } catch (err) {
         frames[i].image = null;

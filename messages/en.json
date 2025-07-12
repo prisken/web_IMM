@@ -237,6 +237,15 @@
             "premium": "Over $100,000"
           }
         },
+        "imageAspectRatio": {
+          "label": "Image Aspect Ratio",
+          "placeholder": "Select image aspect ratio",
+          "options": {
+            "1024x1024": "Square (1:1)",
+            "1024x1792": "Portrait (9:16)",
+            "1792x1024": "Landscape (16:9)"
+          }
+        },
         "contact": {
           "name": {
             "label": "Full Name *",
