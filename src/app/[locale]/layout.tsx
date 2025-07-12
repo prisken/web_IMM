@@ -1,6 +1,5 @@
 export const dynamic = "force-dynamic";
-import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
@@ -9,16 +8,6 @@ import "../globals.css";
 import Header from "../../components/layout/Header";
 import Footer from "../../components/layout/Footer";
 import StructuredData from "../../components/StructuredData";
-
-const inter = Inter({ subsets: ["latin"] });
-
-export const viewport: Viewport = {
-  width: 'device-width',
-  initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
-  themeColor: '#2563eb',
-};
 
 export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -76,18 +65,14 @@ export default async function LocaleLayout({
   };
 
   return (
-    <html lang={locale}>
-      <body className={inter.className}>
-        <NextIntlClientProvider messages={messages} locale={locale}>
-          <StructuredData 
-            type="organization" 
-            data={organizationData}
-          />
-          <Header />
-          <main>{children}</main>
-          <Footer />
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <NextIntlClientProvider messages={messages} locale={locale}>
+      <StructuredData 
+        type="organization" 
+        data={organizationData}
+      />
+      <Header />
+      <main>{children}</main>
+      <Footer />
+    </NextIntlClientProvider>
   );
 } 
