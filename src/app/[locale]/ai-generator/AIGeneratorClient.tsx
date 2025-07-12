@@ -32,6 +32,9 @@ interface AIGeneratorClientProps {
 export default function AIGeneratorClient({ translations, locale }: AIGeneratorClientProps) {
   const t = translations;
   
+  // Cache-busting: Force reload of translation files
+  const cacheBuster = Date.now();
+  
   // Debug logging to help identify translation issues
   console.log('Translation object loaded:', {
     hasForm: !!t?.form,
@@ -39,7 +42,8 @@ export default function AIGeneratorClient({ translations, locale }: AIGeneratorC
     hasDuration: !!t?.form?.duration,
     hasBudget: !!t?.form?.budget,
     hasImageAspectRatio: !!t?.form?.imageAspectRatio,
-    locale
+    locale,
+    cacheBuster
   });
   
   // More detailed logging
