@@ -59,6 +59,50 @@ async function callDeepSeekAPI(prompt, systemPrompt = null) {
   }
 }
 
+// Helper function to translate prompt to English using DeepSeek
+async function translateToEnglish(text) {
+  // If text is already English, skip translation (simple heuristic)
+  if (/^[\x00-\x7F]*$/.test(text)) return text;
+  const prompt = `Translate the following prompt to English. Only return the translated text, no explanations.\n\n${text}`;
+  const translated = await callDeepSeekAPI(prompt);
+  return translated.trim();
+}
+
+// Helper function to call Stable Diffusion API
+async function callStableDiffusion(prompt) {
+  if (!STABLE_DIFFUSION_API_KEY) throw new Error('Stable Diffusion API key not configured');
+  const response = await fetch(STABLE_DIFFUSION_API_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${STABLE_DIFFUSION_API_KEY}`,
+    },
+    body: JSON.stringify({
+      text_prompts: [{ text: prompt }],
+      cfg_scale: 7,
+      height: 512,
+      width: 768,
+      samples: 1,
+      steps: 30
+    })
+  });
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Stable Diffusion API error: ${response.status} - ${errorText}`);
+  }
+  const data = await response.json();
+  // Assume the API returns an array of images as base64 or URLs
+  // Adjust this if your API returns differently
+  if (data.artifacts && data.artifacts[0] && data.artifacts[0].base64) {
+    // Return as data URL
+    return `data:image/png;base64,${data.artifacts[0].base64}`;
+  } else if (data.images && data.images[0]) {
+    return data.images[0];
+  } else {
+    throw new Error('No image returned from Stable Diffusion');
+  }
+}
+
 // Storyboard generation prompts
 const BUSINESS_TVC_PROMPT = `You are a creative director at a media production house. Create a compelling TV commercial storyboard based on the following information:
 
@@ -325,6 +369,22 @@ router.post('/generate-storyboard-stream', async (req, res) => {
       message: 'Creating visual concepts...',
       progress: 60
     })}\n\n`);
+
+    // Generate images for each frame
+    for (let i = 0; i < frames.length; i++) {
+      let prompt = frames[i].visual;
+      // Translate to English if not already
+      if (locale !== 'en') {
+        prompt = await translateToEnglish(prompt);
+      }
+      try {
+        const imageUrl = await callStableDiffusion(prompt);
+        frames[i].image = imageUrl;
+      } catch (err) {
+        frames[i].image = null;
+        console.error('Stable Diffusion error for frame', i + 1, err);
+      }
+    }
 
     // Calculate total duration and budget
     const totalDuration = frames.reduce((sum, frame) => sum + frame.duration, 0);
