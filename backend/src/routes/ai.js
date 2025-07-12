@@ -391,6 +391,7 @@ router.post('/generate-storyboard-stream', async (req, res) => {
       try {
         const imageUrl = await callStableDiffusion(prompt, imageAspectRatio || '1024x1024');
         frames[i].image = imageUrl;
+        console.log(`Frame ${i + 1} image:`, imageUrl ? imageUrl.substring(0, 100) + '...' : imageUrl);
       } catch (err) {
         frames[i].image = null;
         console.error('Stable Diffusion error for frame', i + 1, err);

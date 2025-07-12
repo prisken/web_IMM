@@ -10,6 +10,7 @@ interface StoryboardFrame {
   camera: string;
   audio: string;
   imageUrl?: string;
+  image?: string;
 }
 
 interface GeneratedStoryboard {
@@ -40,6 +41,10 @@ export default function AIGeneratorClient({ translations, locale }: AIGeneratorC
     hasImageAspectRatio: !!t?.form?.imageAspectRatio,
     locale
   });
+  
+  // More detailed logging
+  console.log('Full form object:', t?.form);
+  console.log('ImageAspectRatio object:', t?.form?.imageAspectRatio);
 
   // Fallback function for translation keys
   const getTranslation = (path: string, fallback: string = '') => {
@@ -957,9 +962,9 @@ export default function AIGeneratorClient({ translations, locale }: AIGeneratorC
                 {generatedStoryboard.frames.map((frame) => (
                   <div key={frame.id} className="border border-gray-200 rounded-lg p-4 sm:p-6">
                     <div className="bg-gray-100 h-32 sm:h-48 rounded-lg mb-4 flex items-center justify-center overflow-hidden">
-                      {frame.imageUrl ? (
+                      {frame.image ? (
                         <img 
-                          src={frame.imageUrl} 
+                          src={frame.image} 
                           alt={frame.description}
                           className="w-full h-full object-cover"
                         />
