@@ -137,6 +137,15 @@ export default async function AIGeneratorPage({ params }: { params: Promise<{ lo
           premium: t('generator.form.budget.options.premium')
         }
       },
+      imageAspectRatio: {
+        label: t('generator.form.imageAspectRatio.label'),
+        placeholder: t('generator.form.imageAspectRatio.placeholder'),
+        options: {
+          '1024x1024': t('generator.form.imageAspectRatio.options.1024x1024'),
+          '1024x1792': t('generator.form.imageAspectRatio.options.1024x1792'),
+          '1792x1024': t('generator.form.imageAspectRatio.options.1792x1024')
+        }
+      },
       contact: {
         name: {
           label: t('generator.form.contact.name.label'),
