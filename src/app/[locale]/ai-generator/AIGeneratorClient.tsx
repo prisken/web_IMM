@@ -904,7 +904,10 @@ export default function AIGeneratorClient({ translations, locale }: AIGeneratorC
                 <p className="text-sm sm:text-base text-gray-600 mb-4">{generatedStoryboard.summary}</p>
                 <div className="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-8 text-xs sm:text-sm text-gray-500">
                   <span>Duration: {generatedStoryboard.totalDuration}s</span>
-                  <span>Budget: {generatedStoryboard.estimatedBudget}</span>
+                  <span>Budget: {typeof generatedStoryboard.estimatedBudget === 'object' && generatedStoryboard.estimatedBudget !== null
+  ? `${(generatedStoryboard.estimatedBudget as any).min} - ${(generatedStoryboard.estimatedBudget as any).max} ${(generatedStoryboard.estimatedBudget as any).currency}`
+  : generatedStoryboard.estimatedBudget}
+</span>
                   <span>Frames: {generatedStoryboard.frames?.length || 0}</span>
                 </div>
               </div>
