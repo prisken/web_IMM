@@ -276,7 +276,9 @@ export default function AIGeneratorClient({ translations, locale }: AIGeneratorC
     });
 
     try {
-      const response = await fetch('/api/generate-storyboard-stream', {
+      // Use the backend API instead of local endpoint
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001';
+      const response = await fetch(`${apiUrl}/api/generate-storyboard-stream`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -358,7 +360,9 @@ export default function AIGeneratorClient({ translations, locale }: AIGeneratorC
 
     setIsTranslating(true);
     try {
-      const response = await fetch('/api/translate-storyboard', {
+      // Use the backend API instead of local endpoint
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001';
+      const response = await fetch(`${apiUrl}/api/translate-storyboard`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -10,6 +10,7 @@ const authRoutes = require('./routes/auth');
 const blogRoutes = require('./routes/blog');
 const mediaRoutes = require('./routes/media');
 const adminRoutes = require('./routes/admin');
+const aiRoutes = require('./routes/ai');
 const { initializeDatabase } = require('./database/init');
 
 const app = express();
@@ -52,6 +53,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/blog', blogRoutes);
 app.use('/api/media', mediaRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api', aiRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {
