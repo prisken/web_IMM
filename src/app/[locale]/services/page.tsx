@@ -1,255 +1,178 @@
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
+import Link from 'next/link';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'services' });
   
   return {
-    title: `${t('title')} | Creative Media Production House | Hong Kong`,
-    description: t('subtitle'),
+    title: 'AI 服務提升 | Creative Media Production House',
+    description: '我們利用AI技術，幫助您提高業務效率並降低成本，實現超越預期的創新目標。',
   };
 }
 
 export default async function ServicesPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'services' });
-  const services = [
-    {
-      id: 'tvc',
-      title: t('tvc.title'),
-      description: t('tvc.description'),
-      icon: (
-        <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-        </svg>
-      ),
-      features: t('tvc.features').split(',').map(f => f.trim()),
-      process: t('tvc.process').split(',').map(f => f.trim()),
-      pricing: t('tvc.pricing'),
-      getStarted: t('tvc.getStarted')
-    },
-    {
-      id: 'kol',
-      title: t('kol.title'),
-      description: t('kol.description'),
-      icon: (
-        <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-        </svg>
-      ),
-      features: t('kol.features').split(',').map(f => f.trim()),
-      process: t('kol.process').split(',').map(f => f.trim()),
-      pricing: t('kol.pricing'),
-      getStarted: t('kol.getStarted')
-    },
-    {
-      id: 'creative',
-      title: t('creative.title'),
-      description: t('creative.description'),
-      icon: (
-        <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-        </svg>
-      ),
-      features: t('creative.features').split(',').map(f => f.trim()),
-      process: t('creative.process').split(',').map(f => f.trim()),
-      pricing: t('creative.pricing'),
-      getStarted: t('creative.getStarted')
-    }
-  ];
 
-  const whyChooseUs = [
-    {
-      title: t('whyChooseUs.creativeExcellence.title'),
-      description: t('whyChooseUs.creativeExcellence.description'),
-      icon: (
-        <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-        </svg>
-      )
-    },
-    {
-      title: t('whyChooseUs.aiInnovation.title'),
-      description: t('whyChooseUs.aiInnovation.description'),
-      icon: (
-        <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-        </svg>
-      )
-    },
-    {
-      title: t('whyChooseUs.strategicThinking.title'),
-      description: t('whyChooseUs.strategicThinking.description'),
-      icon: (
-        <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-        </svg>
-      )
-    },
-    {
-      title: t('whyChooseUs.localExpertise.title'),
-      description: t('whyChooseUs.localExpertise.description'),
-      icon: (
-        <svg className="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-        </svg>
-      )
-    }
+  const stats = [
+    { value: '30%', label: '創新增長' },
+    { value: '25%', label: '客戶滿意度' },
+    { value: '40%', label: '市場佔有率' }
   ];
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-600 to-purple-700 text-white">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            {t('hero.title')}
-          </h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-            {t('hero.description')}
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300">
-              {t('hero.getQuote')}
-            </button>
-            <button className="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300">
-              {t('hero.viewPortfolio')}
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Overview */}
-      <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{t('overview.title')}</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {t('overview.description')}
+      <section className="bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 text-white py-24">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <h1 className="text-4xl sm:text-5xl font-bold mb-6">
+              AI 服務提升
+            </h1>
+            <p className="text-xl text-blue-100 mb-8 max-w-3xl">
+              我們利用AI技術，幫助您提高業務效率並降低成本，實現超越預期的創新目標。
             </p>
-          </div>
-
-          <div className="grid lg:grid-cols-3 gap-8">
-            {services.map((service) => (
-              <div key={service.id} className="bg-gray-50 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center mb-6">
-                  {service.icon}
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">{service.title}</h3>
-                <p className="text-gray-600 mb-6">{service.description}</p>
-                
-                <div className="mb-6">
-                  <h4 className="font-semibold text-gray-900 mb-3">{t('whatsIncluded')}</h4>
-                  <ul className="space-y-2">
-                    {service.features.map((feature, index) => (
-                      <li key={index} className="flex items-center text-gray-600">
-                        <svg className="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="mb-6">
-                  <h4 className="font-semibold text-gray-900 mb-3">{t('ourProcess')}</h4>
-                  <div className="space-y-2">
-                    {service.process.map((step, index) => (
-                      <div key={index} className="flex items-center text-gray-600">
-                        <div className="w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs font-bold mr-3">
-                          {index + 1}
-                        </div>
-                        {step}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="border-t border-gray-200 pt-4">
-                  <p className="text-2xl font-bold text-blue-600 mb-4">{service.pricing}</p>
-                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition-colors duration-200">
-                    {service.getStarted}
-                  </button>
-                </div>
-              </div>
-            ))}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link
+                href="#contact"
+                className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-colors inline-flex items-center justify-center"
+              >
+                了解更多
+              </Link>
+              <Link
+                href="#details"
+                className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/10 transition-colors inline-flex items-center justify-center"
+              >
+                聯絡我們
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Why Choose Us */}
+      {/* Advanced AI Technology Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="inline-block bg-blue-100 rounded-full p-3 mb-6">
+                <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <h2 className="text-3xl font-bold mb-6">探索我們的先進AI技術與應用</h2>
+              <p className="text-gray-600 mb-6">
+                我們的AI技術能夠為眾多領域帶來革新，自然語言處理及數據分析等，為您的業務帶來增值。無論是提升生產力或優化業務流程都能，我們都能助您實現您的業務目標。
+              </p>
+              <Link
+                href="#contact"
+                className="text-blue-600 font-semibold hover:text-blue-700 inline-flex items-center"
+              >
+                了解更多
+                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
+            <div className="bg-gray-200 rounded-lg aspect-square">
+              {/* Placeholder for service image */}
+              <div className="w-full h-full flex items-center justify-center">
+                <svg className="w-24 h-24 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Business Enhancement Section */}
       <section className="py-20 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{t('whyChooseUs.title')}</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {t('whyChooseUs.description')}
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {whyChooseUs.map((item, index) => (
-              <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                  {item.icon}
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
-                <p className="text-gray-600">{item.description}</p>
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div className="bg-gray-200 rounded-lg aspect-square">
+              {/* Placeholder for business image */}
+              <div className="w-full h-full flex items-center justify-center">
+                <svg className="w-24 h-24 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
               </div>
-            ))}
+            </div>
+            <div>
+              <h2 className="text-3xl font-bold mb-6">利用AI服務，提升業務效率，降低成本，改善決策品質</h2>
+              <p className="text-gray-600 mb-6">
+                透過我們的AI服務，客戶能夠顯著提升工作效率，整體營運費用降低，並助於AI建議分析及預測功能，精確制定商業決策。
+              </p>
+              <Link
+                href="#contact"
+                className="text-blue-600 font-semibold hover:text-blue-700 inline-flex items-center"
+              >
+                了解更多
+                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Process Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{t('processSection.title')}</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {t('processSection.description')}
+      {/* Stats Section */}
+      <section className="py-20 bg-gray-800 text-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl font-bold mb-12 text-center">我們的AI服務如何改變企業</h2>
+            <p className="text-center mb-12 text-gray-300 max-w-3xl mx-auto">
+              我們的AI服務能夠為眾多企業帶來革新與進步，根據統計，使用我們的AI解決方案的企業，業務效率提升平均超過了30%，並且成功降低運營成本約7成且提高業務品質的可行性。
             </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { step: '01', key: '0' },
-              { step: '02', key: '1' },
-              { step: '03', key: '2' },
-              { step: '04', key: '3' }
-            ].map((item, index) => (
-              <div key={index} className="text-center">
-                <div className="w-20 h-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <span className="text-white text-2xl font-bold">{item.step}</span>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {stats.map((stat, index) => (
+                <div key={index} className="text-center">
+                  <div className="text-5xl font-bold mb-4">{stat.value}</div>
+                  <div className="text-gray-300">{stat.label}</div>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">{t(`processSection.steps.${item.key}.title`)}</h3>
-                <p className="text-gray-600">{t(`processSection.steps.${item.key}.description`)}</p>
-              </div>
-            ))}
+              ))}
+            </div>
+            <div className="text-center mt-12">
+              <Link
+                href="#contact"
+                className="bg-white text-gray-800 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center"
+              >
+                了解更多
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-700 text-white">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">{t('ctaSection.title')}</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            {t('ctaSection.description')}
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300">
-              {t('ctaSection.getConsultation')}
-            </button>
-            <button className="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300">
-              {t('ctaSection.viewWork')}
-            </button>
+      <section id="contact" className="py-20 bg-gray-700 text-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl font-bold mb-6">
+              立即聯繫我們了解AI服務
+            </h2>
+            <p className="text-xl text-gray-300 mb-8">
+              我們的AI服務能夠幫助您優化業務流程並提高效率，歡迎隨時與我們聯繫以獲取更多資訊。
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/contact"
+                className="bg-white text-gray-800 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+              >
+                了解更多
+              </Link>
+              <Link
+                href="/contact"
+                className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/10 transition-colors"
+              >
+                立即聯繫
+              </Link>
+            </div>
           </div>
         </div>
       </section>
     </div>
   );
-} 
+}
