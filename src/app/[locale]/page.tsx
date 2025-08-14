@@ -39,31 +39,29 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               alt="Business woman with AI illustrations"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent">
-              <div className="absolute top-1/2 left-16 transform -translate-y-1/2 text-white max-w-lg">
-                <h1 className="text-5xl font-bold mb-6">用AI提升業務？</h1>
-                <p className="text-xl mb-4">透過AI技術，助您創造大衆效益</p>
-                <p className="text-xl mb-8">讓業務在競爭中脫穎而出</p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Link
-                    href={`/${locale}/workshop`}
-                    className="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-all transform hover:scale-105 text-lg inline-block text-center"
-                  >
-                    參加工作坊
-                  </Link>
-                </div>
-                <div className="mt-6">
-                  <ul className="text-lg space-y-2 text-gray-200">
-                    <li className="flex items-center">
-                      <span className="mr-2">•</span>
-                      一對一業務探討
-                    </li>
-                    <li className="flex items-center">
-                      <span className="mr-2">•</span>
-                      免費1分鐘宣傳影片
-                    </li>
-                  </ul>
-                </div>
+            <div className="absolute top-1/2 left-16 transform -translate-y-1/2 max-w-lg">
+              <h1 className="text-5xl font-bold mb-6 text-black">用AI提升業務？</h1>
+              <p className="text-xl mb-4 text-gray-800">透過AI技術，助您創造大衆效益</p>
+              <p className="text-xl mb-8 text-gray-800">讓業務在競爭中脫穎而出</p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link
+                  href={`/${locale}/workshop`}
+                  className="bg-black text-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-800 transition-all transform hover:scale-105 text-lg inline-block text-center"
+                >
+                  參加工作坊
+                </Link>
+              </div>
+              <div className="mt-6">
+                <ul className="text-lg space-y-2 text-gray-700">
+                  <li className="flex items-center">
+                    <span className="mr-2">•</span>
+                    一對一業務探討
+                  </li>
+                  <li className="flex items-center">
+                    <span className="mr-2">•</span>
+                    免費1分鐘宣傳影片
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
