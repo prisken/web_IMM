@@ -53,15 +53,12 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
                 </ul>
               </div>
             </div>
-            <div className="relative">
+            <div className="relative flex justify-center items-center">
               <img
                 src="/images/Change_the_girl_in_black_outline_into_a_real_person_An_office_lady_from_hong_kong.png"
                 alt="Business woman with AI illustrations"
-                className="w-full h-[500px] object-cover rounded-lg shadow-xl"
+                className="w-full h-[500px] object-contain rounded-lg shadow-xl"
               />
-              <div className="absolute top-0 right-0 p-4">
-                <img src="/images/robot-icon.svg" alt="Robot icon" className="w-16 h-16" />
-              </div>
             </div>
           </div>
         </div>
