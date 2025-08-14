@@ -231,7 +231,9 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center">
             <div className="space-y-6 sm:space-y-8 text-center md:text-left">
-              <h2 className="text-3xl sm:text-4xl font-bold">AI + 創意=無限可能</h2>
+              <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-black to-gray-700 bg-clip-text text-transparent">
+                AI + 創意=無限可能
+              </h2>
               <div className="space-y-3 sm:space-y-4">
                 <p className="text-lg sm:text-xl text-gray-700">帶您進入創新的世界！</p>
                 <p className="text-lg sm:text-xl text-gray-700">學習如何利用AI提升業務</p>
@@ -239,18 +241,21 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               </div>
               <Link
                 href={`/${locale}/workshop`}
-                className="inline-block bg-black text-white w-full md:w-auto px-8 sm:px-12 py-4 sm:py-5 rounded-lg hover:bg-gray-800 transition-all transform hover:scale-105 hover:shadow-xl text-base sm:text-lg font-semibold"
+                className="inline-block bg-black text-white w-full md:w-auto px-8 sm:px-12 py-4 sm:py-5 rounded-xl hover:bg-gray-800 transition-all transform hover:scale-105 hover:shadow-xl text-base sm:text-lg font-semibold"
               >
                 立即報名
               </Link>
             </div>
             <div className="relative mt-8 md:mt-0">
-              <div className="absolute -inset-4 bg-gradient-to-r from-blue-100 to-purple-100 rounded-2xl transform -rotate-2 hidden sm:block"></div>
-              <img
-                src="/images/A_infographic_drawing_of_an_egg_becoming_a_person_with_the_help_of_a_team_colorful_lines_on_white_background_the_final_person_is_a_realistic_person_male_30s_from_Hong_Kong.png"
-                alt="Evolution illustration"
-                className="relative w-full rounded-xl shadow-xl sm:shadow-2xl transform sm:rotate-2 hover:rotate-0 transition-transform duration-500"
-              />
+              <div className="absolute -inset-4 bg-gradient-to-r from-blue-100 to-purple-100 rounded-2xl transform -rotate-2"></div>
+              <div className="relative group">
+                <div className="absolute -inset-4 bg-gradient-to-r from-blue-100/50 to-purple-100/50 rounded-2xl transform rotate-2 transition-transform duration-500 group-hover:rotate-0"></div>
+                <img
+                  src="/images/A_infographic_drawing_of_an_egg_becoming_a_person_with_the_help_of_a_team_colorful_lines_on_white_background_the_final_person_is_a_realistic_person_male_30s_from_Hong_Kong.png"
+                  alt="Evolution illustration"
+                  className="relative w-full rounded-xl shadow-2xl transform -rotate-2 transition-all duration-500 group-hover:rotate-0 group-hover:scale-[1.02]"
+                />
+              </div>
             </div>
           </div>
         </div>
