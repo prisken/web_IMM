@@ -31,89 +31,88 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-screen bg-white">
-        {/* Mobile Hero */}
-        <div className="block md:hidden">
-          <div className="relative h-[70vh] bg-black">
-            <img
-              src="/images/Change_the_girl_in_black_outline_into_a_real_person_An_office_lady_from_hong_kong.png"
-              alt="Business woman with AI illustrations"
-              className="w-full h-full object-cover opacity-85"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-white"></div>
-          </div>
-          <div className="relative -mt-20 px-6 pb-12 bg-white rounded-t-[2.5rem] shadow-[0_-20px_30px_-15px_rgba(0,0,0,0.1)]">
-            <div className="pt-12 text-center">
-              <h1 className="text-[2.5rem] leading-[1.2] font-bold mb-4 bg-gradient-to-r from-black to-gray-600 bg-clip-text text-transparent">
-                用AI提升業務？
-              </h1>
-              <p className="text-xl mb-3 text-gray-700">透過AI技術，助您創造大衆效益</p>
-              <p className="text-xl mb-8 text-gray-700">讓業務在競爭中脫穎而出</p>
-              <Link
-                href={`/${locale}/workshop`}
-                className="block w-full bg-black text-white px-8 py-5 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-gray-900"
-              >
-                參加工作坊
-              </Link>
-              <div className="mt-8 flex justify-center gap-8">
-                <div className="flex items-center text-base">
-                  <svg className="w-5 h-5 mr-2 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  一對一業務探討
+      <section className="relative min-h-[100svh] bg-white overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(0,0,0,0),rgba(0,0,0,0.1))]"></div>
+        
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23000000\' fill-opacity=\'0.1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
+            backgroundSize: '30px 30px'
+          }}></div>
+        </div>
+
+        <div className="relative container mx-auto px-4 sm:px-6 flex min-h-[100svh] items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center py-12 sm:py-16">
+            {/* Text Content */}
+            <div className="relative z-10 text-center lg:text-left">
+              <div className="space-y-6">
+                <div className="inline-block text-sm font-medium px-4 py-2 bg-black/5 rounded-full mb-2">
+                  AI創意工作坊
                 </div>
-                <div className="flex items-center text-base">
-                  <svg className="w-5 h-5 mr-2 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  免費1分鐘宣傳影片
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
+                  <span className="inline-block mb-2">用</span>
+                  <span className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent px-2">AI</span>
+                  <span className="inline-block">提升業務？</span>
+                </h1>
+                <div className="space-y-3">
+                  <p className="text-lg sm:text-xl text-gray-700">透過AI技術，助您創造大衆效益</p>
+                  <p className="text-lg sm:text-xl text-gray-700">讓業務在競爭中脫穎而出</p>
+                </div>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                  <Link
+                    href={`/${locale}/workshop`}
+                    className="group relative overflow-hidden bg-black text-white px-8 py-4 rounded-xl font-semibold text-lg inline-flex items-center justify-center transition-all hover:shadow-2xl hover:scale-[1.02]"
+                  >
+                    <span className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    <span className="relative flex items-center">
+                      參加工作坊
+                      <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </span>
+                  </Link>
+                  <Link
+                    href="#features"
+                    className="group bg-white border-2 border-black/10 text-gray-800 px-8 py-4 rounded-xl font-semibold text-lg inline-flex items-center justify-center hover:bg-black/5 transition-colors"
+                  >
+                    了解更多
+                    <svg className="w-5 h-5 ml-2 transform group-hover:translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                    </svg>
+                  </Link>
+                </div>
+                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-8 justify-center lg:justify-start mt-8">
+                  <div className="flex items-center text-base sm:text-lg">
+                    <span className="flex items-center justify-center w-8 h-8 rounded-full bg-green-100 mr-3">
+                      <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </span>
+                    一對一業務探討
+                  </div>
+                  <div className="flex items-center text-base sm:text-lg">
+                    <span className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 mr-3">
+                      <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                      </svg>
+                    </span>
+                    免費1分鐘宣傳影片
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* Desktop Hero */}
-        <div className="hidden md:block">
-          <div className="container mx-auto px-6 py-16">
-            <div className="relative h-[600px] rounded-2xl overflow-hidden shadow-2xl">
-              <img
-                src="/images/Change_the_girl_in_black_outline_into_a_real_person_An_office_lady_from_hong_kong.png"
-                alt="Business woman with AI illustrations"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 flex items-center">
-                <div className="absolute top-1/2 left-16 transform -translate-y-1/2 max-w-lg">
-                  <div>
-                    <h1 className="text-5xl font-bold mb-6 text-black">用AI提升業務？</h1>
-                    <p className="text-xl mb-4 text-gray-800">透過AI技術，助您創造大衆效益</p>
-                    <p className="text-xl mb-8 text-gray-800">讓業務在競爭中脫穎而出</p>
-                    <div className="flex gap-4">
-                      <Link
-                        href={`/${locale}/workshop`}
-                        className="bg-black text-white px-8 py-4 rounded-xl font-semibold hover:bg-gray-800 transition-all transform hover:scale-105 text-lg inline-block text-center shadow-lg hover:shadow-xl"
-                      >
-                        參加工作坊
-                      </Link>
-                    </div>
-                    <div className="mt-8">
-                      <ul className="text-lg space-y-3 text-gray-700">
-                        <li className="flex items-center">
-                          <svg className="w-5 h-5 mr-3 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
-                          一對一業務探討
-                        </li>
-                        <li className="flex items-center">
-                          <svg className="w-5 h-5 mr-3 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
-                          免費1分鐘宣傳影片
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+            {/* Image */}
+            <div className="relative">
+              <div className="absolute -inset-4 bg-gradient-to-r from-blue-100/50 to-purple-100/50 rounded-3xl transform rotate-2 transition-transform duration-500 group-hover:rotate-0"></div>
+              <div className="relative group">
+                <img
+                  src="/images/Change_the_girl_in_black_outline_into_a_real_person_An_office_lady_from_hong_kong.png"
+                  alt="Business woman with AI illustrations"
+                  className="w-full rounded-2xl shadow-2xl transform transition-all duration-500 hover:scale-[1.02] hover:rotate-0 object-cover aspect-[4/3] lg:aspect-auto"
+                />
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-blue-600/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </div>
             </div>
           </div>
