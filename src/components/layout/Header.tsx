@@ -15,13 +15,11 @@ export default function Header() {
   const t = useTranslations('navigation');
 
   const navigation = [
-    { name: t('home'), href: `/${locale}` },
     { name: t('services'), href: `/${locale}/services` },
-    { name: t('portfolio'), href: `/${locale}/portfolio` },
     { name: t('blog'), href: `/${locale}/blog` },
     { name: t('aiGenerator'), href: `/${locale}/ai-generator` },
     { name: t('about'), href: `/${locale}/about` },
-    { name: t('contact'), href: `/${locale}/contact` },
+    { name: "工作坊", href: `/${locale}/workshop` },
   ];
 
   const isActive = (href: string) => {
@@ -61,15 +59,9 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Language Switcher and CTA */}
+          {/* Language Switcher */}
           <div className="hidden md:flex items-center space-x-4">
             <LanguageSwitcher />
-            <Link
-              href={`/${locale}/contact`}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 min-h-[44px] flex items-center"
-            >
-              {t('getStarted')}
-            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -111,13 +103,6 @@ export default function Header() {
               <div className="pt-4 pb-3 border-t border-gray-200">
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between space-y-3 sm:space-y-0">
                   <LanguageSwitcher />
-                  <Link
-                    href={`/${locale}/contact`}
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg text-sm font-medium transition-colors duration-200 min-h-[44px] flex items-center justify-center w-full sm:w-auto"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {t('getStarted')}
-                  </Link>
                 </div>
               </div>
             </div>
@@ -126,4 +111,4 @@ export default function Header() {
       </div>
     </header>
   );
-} 
+}
