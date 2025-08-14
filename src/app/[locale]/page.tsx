@@ -198,28 +198,6 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         </div>
       </section>
 
-      {/* Social Links */}
-      <section className="py-8 bg-gray-100">
-        <div className="container mx-auto px-4">
-          <div className="text-center">
-            <h3 className="text-xl font-bold mb-4">關注我們</h3>
-            <div className="flex justify-center gap-6">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-800">
-                Facebook
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-800">
-                LinkedIn
-              </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-800">
-                Instagram
-              </a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-800">
-                Youtube
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
