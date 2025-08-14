@@ -31,7 +31,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-[100svh] bg-white overflow-hidden">
+      <section className="relative bg-white overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(0,0,0,0),rgba(0,0,0,0.1))]"></div>
         
         {/* Background Pattern */}
@@ -42,8 +42,8 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
           }}></div>
         </div>
 
-        <div className="relative container mx-auto px-4 sm:px-6 flex min-h-[100svh] items-center">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center py-12 sm:py-16">
+        <div className="relative container mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[80vh] py-12 sm:py-16">
             {/* Text Content */}
             <div className="relative z-10 text-center lg:text-left">
               <div className="space-y-6">
@@ -120,7 +120,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       </section>
 
       {/* Key Features Section */}
-      <section className="py-16 sm:py-24 bg-gray-50">
+      <section className="py-12 sm:py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 sm:mb-16">
             <span className="inline-block text-sm font-semibold text-black px-4 py-2 bg-gray-100 rounded-full mb-4">我們的服務</span>
