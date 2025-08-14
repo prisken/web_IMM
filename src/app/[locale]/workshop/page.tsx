@@ -81,146 +81,249 @@ export default async function WorkshopPage({ params }: { params: Promise<{ local
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 text-white py-24">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl sm:text-5xl font-bold mb-6">
-              探索AI與創意的無限可能
-            </h1>
-            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-              在我們的AI創意工作坊中，您將學習如何運用最新的AI技術提升創作效率，並與行業專家交流經驗。
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="#dates"
-                className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
-              >
-                立即報名
-              </Link>
-              <Link
-                href="#details"
-                className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/10 transition-colors"
-              >
-                了解更多
-              </Link>
+      <section className="relative min-h-[90vh] flex items-center bg-black text-white overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-black/70 to-black/50"></div>
+          <video
+            className="w-full h-full object-cover opacity-50"
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster="/images/workshop-poster.jpg"
+          >
+            <source src="/videos/workshop-bg.mp4" type="video/mp4" />
+          </video>
+        </div>
+        
+        <div className="container relative z-10 mx-auto px-4 pt-20 pb-12 sm:py-24">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center sm:text-left">
+              <span className="inline-block text-sm font-semibold px-4 py-2 bg-white/10 rounded-full mb-6 backdrop-blur-sm">
+                AI創意工作坊
+              </span>
+              <h1 className="text-4xl sm:text-6xl font-bold mb-6 leading-tight">
+                探索AI與創意的
+                <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                  無限可能
+                </span>
+              </h1>
+              <p className="text-xl sm:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto sm:mx-0">
+                在我們的AI創意工作坊中，您將學習如何運用最新的AI技術提升創作效率，並與行業專家交流經驗。
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+                <Link
+                  href="#dates"
+                  className="bg-white text-black px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all transform hover:scale-105 text-lg shadow-lg hover:shadow-xl"
+                >
+                  立即報名
+                </Link>
+                <Link
+                  href="#details"
+                  className="bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/20 transition-all text-lg"
+                >
+                  了解更多
+                </Link>
+              </div>
             </div>
           </div>
         </div>
+
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent"></div>
       </section>
 
       {/* Workshop Details Section */}
-      <section id="details" className="py-20">
+      <section id="details" className="py-16 sm:py-24 bg-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-            <div className="bg-gray-200 rounded-lg aspect-square">
-              {/* Placeholder for workshop image */}
-              <div className="w-full h-full flex items-center justify-center">
-                <svg className="w-24 h-24 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
+          <div className="max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div className="relative">
+                <div className="absolute -inset-4 bg-gradient-to-r from-blue-100 to-purple-100 rounded-2xl transform rotate-2"></div>
+                <img
+                  src="/images/workshop-details.jpg"
+                  alt="Workshop Details"
+                  className="relative w-full aspect-[4/3] object-cover rounded-xl shadow-2xl transform -rotate-2 hover:rotate-0 transition-transform duration-500"
+                />
               </div>
-            </div>
-            <div>
-              <div className="inline-block bg-blue-100 rounded-full p-2 mb-4">
-                <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
+              <div className="relative">
+                <span className="inline-block text-sm font-semibold px-4 py-2 bg-blue-100 text-blue-800 rounded-full mb-6">
+                  工作坊特色
+                </span>
+                <h2 className="text-3xl sm:text-4xl font-bold mb-6">工作坊詳情</h2>
+                <p className="text-gray-600 text-lg mb-8">
+                  我們的工作坊專注於實踐學習，讓您能夠立即應用所學。每個工作坊都由行業專家親自指導，確保您能獲得最新、最實用的知識和技能。
+                </p>
+                <ul className="space-y-6">
+                  <li className="flex items-start">
+                    <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                      <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold mb-1">專業導師一對一指導</h3>
+                      <p className="text-gray-600">獲得專業導師的個人化指導和建議</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
+                      <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold mb-1">實踐操作和案例分析</h3>
+                      <p className="text-gray-600">透過實際案例學習，加深理解和應用</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                      <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold mb-1">最新AI技術應用</h3>
+                      <p className="text-gray-600">掌握最新的AI技術和應用方法</p>
+                    </div>
+                  </li>
+                </ul>
               </div>
-              <h2 className="text-3xl font-bold mb-6">工作坊詳情</h2>
-              <p className="text-gray-600 mb-6">
-                我們的工作坊專注於實踐學習，讓您能夠立即應用所學。每個工作坊都由行業專家親自指導，確保您能獲得最新、最實用的知識和技能。
-              </p>
-              <ul className="space-y-4">
-                <li className="flex items-center">
-                  <svg className="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span>專業導師一對一指導</span>
-                </li>
-                <li className="flex items-center">
-                  <svg className="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span>實踐操作和案例分析</span>
-                </li>
-                <li className="flex items-center">
-                  <svg className="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span>最新AI技術應用</span>
-                </li>
-              </ul>
             </div>
           </div>
         </div>
       </section>
 
       {/* Workshop Dates Section */}
-      <section id="dates" className="py-20 bg-gray-50">
+      <section id="dates" className="py-16 sm:py-24 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">工作坊日期與報名</h2>
-          <div className="max-w-4xl mx-auto space-y-6">
-            {workshops[0].dates.map((date, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-lg p-6 flex flex-col sm:flex-row justify-between items-center">
-                <div>
-                  <h3 className="text-xl font-bold mb-2">{date.date}</h3>
-                  <p className="text-gray-600">上午9:00 - 下午5:00</p>
+          <div className="text-center mb-12 sm:mb-16">
+            <span className="inline-block text-sm font-semibold px-4 py-2 bg-black text-white rounded-full mb-4">
+              即將開課
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">工作坊日期與報名</h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              選擇最適合您的時間，開始AI創意之旅
+            </p>
+          </div>
+          
+          <div className="max-w-4xl mx-auto">
+            <div className="grid gap-4 sm:gap-6">
+              {workshops[0].dates.map((date, index) => (
+                <div 
+                  key={index} 
+                  className="group bg-white rounded-xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]"
+                >
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-8">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-4 mb-2">
+                        <h3 className="text-xl sm:text-2xl font-bold">{date.date}</h3>
+                        {date.status === "報名中" && (
+                          <span className="inline-block px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-full">
+                            名額有限
+                          </span>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-6 text-gray-600">
+                        <div className="flex items-center">
+                          <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                          上午9:00 - 下午5:00
+                        </div>
+                        <div className="hidden sm:flex items-center">
+                          <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                          </svg>
+                          香港
+                        </div>
+                      </div>
+                    </div>
+                    <div className="w-full sm:w-auto">
+                      {date.status === "報名中" ? (
+                        <Link
+                          href="/contact"
+                          className="block w-full sm:w-auto text-center bg-black text-white px-8 py-4 rounded-xl font-semibold hover:bg-gray-800 transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
+                        >
+                          立即報名
+                        </Link>
+                      ) : (
+                        <span className="block w-full sm:w-auto text-center px-8 py-4 bg-gray-100 text-gray-500 rounded-xl font-medium">
+                          {date.status}
+                        </span>
+                      )}
+                    </div>
+                  </div>
                 </div>
-                <div className="mt-4 sm:mt-0">
-                  {date.status === "報名中" ? (
-                    <Link
-                      href="/contact"
-                      className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors inline-block"
-                    >
-                      立即報名
-                    </Link>
-                  ) : (
-                    <span className="text-gray-500 px-6 py-3 border border-gray-300 rounded-lg inline-block">
-                      {date.status}
-                    </span>
-                  )}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Team Section */}
-      <section className="py-20">
+      <section className="py-16 sm:py-24 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-4">我們的導師</h2>
-          <p className="text-gray-600 text-center mb-12">由行業專業精英組成的講師團隊</p>
+          <div className="text-center mb-12 sm:mb-16">
+            <span className="inline-block text-sm font-semibold px-4 py-2 bg-black text-white rounded-full mb-4">
+              專業團隊
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">我們的導師</h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              由行業專業精英組成的講師團隊，帶領您探索AI創意的無限可能
+            </p>
+          </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 max-w-6xl mx-auto">
             {teamMembers.map((member, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden">
-                <div className="aspect-square bg-gray-200">
-                  {/* Placeholder for team member photo */}
-                  <div className="w-full h-full flex items-center justify-center">
-                    <svg className="w-20 h-20 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="font-bold text-xl mb-2">{member.name}</h3>
-                  <p className="text-blue-600 text-sm mb-4">{member.title}</p>
-                  <p className="text-gray-600 text-sm mb-4">{member.description}</p>
-                  <div className="flex space-x-4">
-                    <a href={member.social.twitter} className="text-gray-400 hover:text-gray-600">
-                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+              <div 
+                key={index} 
+                className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]"
+              >
+                <div className="relative">
+                  <div className="aspect-[4/3] bg-gradient-to-br from-blue-100 to-purple-100">
+                    {/* Placeholder for team member photo */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <svg className="w-20 h-20 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                       </svg>
-                    </a>
-                    <a href={member.social.linkedin} className="text-gray-400 hover:text-gray-600">
+                    </div>
+                  </div>
+                  <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div className="p-6 sm:p-8">
+                  <div className="flex items-start justify-between mb-4">
+                    <div>
+                      <h3 className="font-bold text-xl sm:text-2xl mb-2">{member.name}</h3>
+                      <p className="text-black/70 font-medium">{member.title}</p>
+                    </div>
+                    <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-100">
+                      <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                    </span>
+                  </div>
+                  <p className="text-gray-600 text-base mb-6">{member.description}</p>
+                  <div className="flex items-center space-x-4">
+                    <a 
+                      href={member.social.linkedin} 
+                      className="text-gray-600 hover:text-black transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                       </svg>
                     </a>
-                    <a href={member.social.instagram} className="text-gray-400 hover:text-gray-600">
+                    <a 
+                      href={member.social.twitter} 
+                      className="text-gray-600 hover:text-black transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                        <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
                       </svg>
                     </a>
                   </div>
@@ -232,21 +335,48 @@ export default async function WorkshopPage({ params }: { params: Promise<{ local
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 text-white">
-        <div className="container mx-auto px-4">
+      <section className="relative py-20 sm:py-32 overflow-hidden">
+        <div className="absolute inset-0 bg-black">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-purple-600/20 to-black/20"></div>
+        </div>
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(0,0,0,0),rgba(0,0,0,0.5))]"></div>
+        </div>
+        <div className="container relative mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-6">
-              準備好開始您的AI創意之旅了嗎？
+            <span className="inline-block text-sm font-semibold px-4 py-2 bg-white/10 text-white rounded-full mb-6 backdrop-blur-sm">
+              開始學習
+            </span>
+            <h2 className="text-3xl sm:text-5xl font-bold mb-6 text-white">
+              準備好開始您的
+              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                AI創意之旅
+              </span>
+              了嗎？
             </h2>
-            <p className="text-xl text-blue-100 mb-8">
+            <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
               立即報名參加我們的工作坊，與行業專家一起探索AI創意的無限可能！
             </p>
-            <Link
-              href="/contact"
-              className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-colors inline-block"
-            >
-              立即報名
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Link
+                href="/contact"
+                className="w-full sm:w-auto bg-white text-black px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all transform hover:scale-105 text-lg shadow-lg hover:shadow-xl inline-flex items-center justify-center gap-2"
+              >
+                立即報名
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+              <Link
+                href="#dates"
+                className="text-white hover:text-gray-200 transition-colors inline-flex items-center gap-2"
+              >
+                查看課程日期
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
