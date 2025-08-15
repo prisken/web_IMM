@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import Image from "next/image";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -35,9 +36,11 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         {/* Mobile Hero */}
         <div className="block lg:hidden">
           <div className="relative h-[80vh] bg-black">
-            <img
-              src="/images/hero-image-cropped.jpg?v=1"
+            <Image
+              src="/images/Change_the_girl_in_black_outline_into_a_real_person_An_office_lady_from_hong_kong.png"
               alt="Business woman with AI illustrations"
+              fill
+              priority
               className="absolute inset-0 w-full h-full object-cover opacity-85"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-white"></div>
@@ -178,9 +181,12 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
               <div className="relative">
                 <div className="absolute -inset-4 bg-gradient-to-r from-blue-100/50 to-purple-100/50 rounded-3xl transform rotate-2 transition-transform duration-500 group-hover:rotate-0"></div>
                 <div className="relative group">
-                  <img
-                    src="/images/hero-image-cropped.jpg?v=1"
+                  <Image
+                    src="/images/Change_the_girl_in_black_outline_into_a_real_person_An_office_lady_from_hong_kong.png"
                     alt="Business woman with AI illustrations"
+                    width={800}
+                    height={600}
+                    priority
                     className="w-full rounded-2xl shadow-2xl transform transition-all duration-500 hover:scale-[1.02] hover:rotate-0 object-cover aspect-[4/3] lg:aspect-auto"
                   />
                   <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-blue-600/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
