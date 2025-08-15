@@ -31,88 +31,160 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-white overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(0,0,0,0),rgba(0,0,0,0.1))]"></div>
-        
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23000000\' fill-opacity=\'0.1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
-            backgroundSize: '30px 30px'
-          }}></div>
-        </div>
-
-        <div className="relative container mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[60vh] py-4 sm:py-8">
-            {/* Text Content */}
-            <div className="relative z-10 text-center lg:text-left">
-              <div className="space-y-6">
-                <div className="inline-block text-sm font-medium px-4 py-2 bg-black/5 rounded-full mb-2">
-                  AI創意工作坊
-                </div>
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
-                  <span className="inline-block mb-2">用</span>
-                  <span className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent px-2">AI</span>
-                  <span className="inline-block">提升業務？</span>
-                </h1>
-                <div className="space-y-3">
-                  <p className="text-lg sm:text-xl text-gray-700">透過AI技術，助您創造大衆效益</p>
-                  <p className="text-lg sm:text-xl text-gray-700">讓業務在競爭中脫穎而出</p>
-                </div>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                  <Link
-                    href={`/${locale}/workshop`}
-                    className="group relative overflow-hidden bg-black text-white px-8 py-4 rounded-xl font-semibold text-lg inline-flex items-center justify-center transition-all hover:shadow-2xl hover:scale-[1.02]"
-                  >
-                    <span className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                    <span className="relative flex items-center">
-                      參加工作坊
-                      <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </span>
-                  </Link>
-                  <Link
-                    href="#features"
-                    className="group bg-white border-2 border-black/10 text-gray-800 px-8 py-4 rounded-xl font-semibold text-lg inline-flex items-center justify-center hover:bg-black/5 transition-colors"
-                  >
-                    了解更多
-                    <svg className="w-5 h-5 ml-2 transform group-hover:translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+      <section>
+        {/* Mobile Hero */}
+        <div className="block lg:hidden">
+          <div className="relative h-[80vh] bg-black">
+            <img
+              src="/images/hero-image.jpg"
+              alt="AI Business Enhancement"
+              className="absolute inset-0 w-full h-full object-cover opacity-85"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-white"></div>
+          </div>
+          <div className="relative -mt-20 px-6 pb-12 bg-white rounded-t-[2.5rem] shadow-[0_-20px_30px_-15px_rgba(0,0,0,0.1)]">
+            <div className="space-y-6 text-center">
+              <div className="inline-block text-sm font-medium px-4 py-2 bg-black/5 rounded-full">
+                AI創意工作坊
+              </div>
+              <h1 className="text-4xl font-bold leading-[1.1] tracking-tight">
+                <span className="inline-block mb-2">用</span>
+                <span className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent px-2">AI</span>
+                <span className="inline-block">提升業務？</span>
+              </h1>
+              <div className="space-y-3">
+                <p className="text-lg text-gray-700">透過AI技術，助您創造大衆效益</p>
+                <p className="text-lg text-gray-700">讓業務在競爭中脫穎而出</p>
+              </div>
+              <div className="flex flex-col gap-4">
+                <Link
+                  href={`/${locale}/workshop`}
+                  className="group relative overflow-hidden bg-black text-white px-8 py-4 rounded-xl font-semibold text-lg inline-flex items-center justify-center transition-all hover:shadow-2xl hover:scale-[1.02]"
+                >
+                  <span className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                  <span className="relative flex items-center">
+                    參加工作坊
+                    <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
-                  </Link>
+                  </span>
+                </Link>
+                <Link
+                  href="#features"
+                  className="group bg-white border-2 border-black/10 text-gray-800 px-8 py-4 rounded-xl font-semibold text-lg inline-flex items-center justify-center hover:bg-black/5 transition-colors"
+                >
+                  了解更多
+                  <svg className="w-5 h-5 ml-2 transform group-hover:translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                  </svg>
+                </Link>
+              </div>
+              <div className="flex flex-col gap-4 mt-8">
+                <div className="flex items-center justify-center text-base">
+                  <span className="flex items-center justify-center w-8 h-8 rounded-full bg-green-100 mr-3">
+                    <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </span>
+                  一對一業務探討
                 </div>
-                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-8 justify-center lg:justify-start mt-8">
-                  <div className="flex items-center text-base sm:text-lg">
-                    <span className="flex items-center justify-center w-8 h-8 rounded-full bg-green-100 mr-3">
-                      <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </span>
-                    一對一業務探討
-                  </div>
-                  <div className="flex items-center text-base sm:text-lg">
-                    <span className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 mr-3">
-                      <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                      </svg>
-                    </span>
-                    免費1分鐘宣傳影片
-                  </div>
+                <div className="flex items-center justify-center text-base">
+                  <span className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 mr-3">
+                    <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                  </span>
+                  免費1分鐘宣傳影片
                 </div>
               </div>
             </div>
+          </div>
+        </div>
 
-            {/* Image */}
-            <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-r from-blue-100/50 to-purple-100/50 rounded-3xl transform rotate-2 transition-transform duration-500 group-hover:rotate-0"></div>
-              <div className="relative group">
-                <img
-                  src="/images/Change_the_girl_in_black_outline_into_a_real_person_An_office_lady_from_hong_kong.png"
-                  alt="Business woman with AI illustrations"
-                  className="w-full rounded-2xl shadow-2xl transform transition-all duration-500 hover:scale-[1.02] hover:rotate-0 object-cover aspect-[4/3] lg:aspect-auto"
-                />
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-blue-600/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        {/* Desktop Hero */}
+        <div className="hidden lg:block relative bg-white overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(0,0,0,0),rgba(0,0,0,0.1))]"></div>
+          
+          {/* Background Pattern */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute inset-0" style={{
+              backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23000000\' fill-opacity=\'0.1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
+              backgroundSize: '30px 30px'
+            }}></div>
+          </div>
+
+          <div className="container mx-auto px-6">
+            <div className="grid grid-cols-2 gap-16 items-center min-h-[60vh] py-4">
+              {/* Text Content */}
+              <div className="relative z-10 text-left">
+                <div className="space-y-6">
+                  <div className="inline-block text-sm font-medium px-4 py-2 bg-black/5 rounded-full">
+                    AI創意工作坊
+                  </div>
+                  <h1 className="text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
+                    <span className="inline-block mb-2">用</span>
+                    <span className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent px-2">AI</span>
+                    <span className="inline-block">提升業務？</span>
+                  </h1>
+                  <div className="space-y-3">
+                    <p className="text-xl text-gray-700">透過AI技術，助您創造大衆效益</p>
+                    <p className="text-xl text-gray-700">讓業務在競爭中脫穎而出</p>
+                  </div>
+                  <div className="flex gap-4">
+                    <Link
+                      href={`/${locale}/workshop`}
+                      className="group relative overflow-hidden bg-black text-white px-8 py-4 rounded-xl font-semibold text-lg inline-flex items-center justify-center transition-all hover:shadow-2xl hover:scale-[1.02]"
+                    >
+                      <span className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                      <span className="relative flex items-center">
+                        參加工作坊
+                        <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                      </span>
+                    </Link>
+                    <Link
+                      href="#features"
+                      className="group bg-white border-2 border-black/10 text-gray-800 px-8 py-4 rounded-xl font-semibold text-lg inline-flex items-center justify-center hover:bg-black/5 transition-colors"
+                    >
+                      了解更多
+                      <svg className="w-5 h-5 ml-2 transform group-hover:translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                      </svg>
+                    </Link>
+                  </div>
+                  <div className="flex items-start gap-8">
+                    <div className="flex items-center text-lg">
+                      <span className="flex items-center justify-center w-8 h-8 rounded-full bg-green-100 mr-3">
+                        <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </span>
+                      一對一業務探討
+                    </div>
+                    <div className="flex items-center text-lg">
+                      <span className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 mr-3">
+                        <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
+                      </span>
+                      免費1分鐘宣傳影片
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Image */}
+              <div className="relative">
+                <div className="absolute -inset-4 bg-gradient-to-r from-blue-100/50 to-purple-100/50 rounded-3xl transform rotate-2 transition-transform duration-500 group-hover:rotate-0"></div>
+                <div className="relative group">
+                  <img
+                    src="/images/hero-image.jpg"
+                    alt="Business woman with AI illustrations"
+                    className="w-full rounded-2xl shadow-2xl transform transition-all duration-500 hover:scale-[1.02] hover:rotate-0 object-cover aspect-[4/3] lg:aspect-auto"
+                  />
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-blue-600/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                </div>
               </div>
             </div>
           </div>
